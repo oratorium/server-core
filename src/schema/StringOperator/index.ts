@@ -28,7 +28,7 @@ const createOperator = () => ({
 
 const StringOrOperator = new GraphQLInputObjectType({
   name: "StringOrOperator",
-  fields: { ...createOperator() }
+  fields: createOperator()
 });
 
 export const StringOperator = new GraphQLInputObjectType({

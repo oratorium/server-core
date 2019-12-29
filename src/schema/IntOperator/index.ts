@@ -37,7 +37,7 @@ const createOperator = () => ({
 
 const IntOrOperator = new GraphQLInputObjectType({
   name: "IntOrOperator",
-  fields: { ...createOperator() }
+  fields: createOperator()
 });
 
 export const IntOperator = new GraphQLInputObjectType({
