@@ -1,6 +1,8 @@
 import { createConnection } from "typeorm";
 
 import { configs } from "../configs";
+import { ConfigRepository } from "./Config";
+import { UserRepository } from "./User";
 
 const createDatabaseIfNotExists = async () => {
   const connectionOptions = { ...configs.databaseConnectionOptions, database: "" };
@@ -13,7 +15,7 @@ const createDatabaseIfNotExists = async () => {
 };
 
 const synchorinzeRepositories = async () => {
-  const entities = [];
+  const entities = [ConfigRepository, UserRepository];
   const connectionOption = { ...configs.databaseConnectionOptions, entities };
   const connection = await createConnection(connectionOption);
   await connection.synchronize();
