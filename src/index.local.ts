@@ -1,5 +1,6 @@
 import { ApolloServer } from "apollo-server-fastify";
 import Fastify from "fastify";
+import { printSchema } from "graphql";
 
 import { configs } from "./configs";
 import { createContext } from "./context";
@@ -16,6 +17,7 @@ const createServer = () => {
 const run = async () => {
   await initializeRepositories;
   await createServer().listen(configs.port);
+  console.log(printSchema(schema));
   console.log("RUNNING");
 };
 
