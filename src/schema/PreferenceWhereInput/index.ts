@@ -17,7 +17,7 @@ const createOperator = () => ({
 
 const PreferenceOrWhereInput = new GraphQLInputObjectType({
   name: "PreferenceOrWhereInput",
-  fields: { ...createOperator() }
+  fields: createOperator()
 });
 
 export const PreferenceWhereInput = new GraphQLInputObjectType({

@@ -1,8 +1,8 @@
 import DataLoader from "dataloader";
-import { getConnection, getRepository, In, EntitySchema, ObjectType } from "typeorm";
+import { getConnection, getRepository, In, ObjectType } from "typeorm";
 
-import { UserRepository } from "../repositories/User";
 import { PreferenceRepository } from "../repositories/Preference";
+import { UserRepository } from "../repositories/User";
 
 export type Context = ReturnType<typeof createContext>;
 
