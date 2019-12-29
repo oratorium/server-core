@@ -1,6 +1,8 @@
 import { GraphQLList, GraphQLNonNull } from "graphql";
+import { getConnection } from "typeorm";
 
-import { createField } from "../../../utils/graphql-helper";
+import { UserRepository } from "../../../repositories/User";
+import { createBracket, createField } from "../../../utils/graphql-helper";
 import { User } from "../../User";
 import { UserWhereInput } from "../../UserWhereInput";
 
@@ -11,7 +13,17 @@ export const users = createField({
       type: new GraphQLNonNull(UserWhereInput)
     }
   },
-  resolve(parent, args, context, info) {
-    return [];
+  async resolve(parent, args, context, info) {
+    const [query, parameterList] = getConnection()
+      .createQueryBuilder()
+      .select("User.*")
+      .from(UserRepository, "User")
+      .where(createBracket(args.where, { id: "User.id", name: "User.name" }))
+      .getQueryAndParameters();
+    const userList = await context.loaders.query.load<readonly UserRepository[]>({ query, parameterList, isArray: true });
+    userList.forEach(user => {
+      context.loaders.user.prime(user.id, user);
+    });
+    return userList;
   }
 });
