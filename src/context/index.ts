@@ -1,11 +1,16 @@
 import DataLoader from "dataloader";
-import { getConnection } from "typeorm";
+import { getConnection, getRepository, In } from "typeorm";
+
+import { UserRepository } from "../repositories/User";
 
 export type Context = ReturnType<typeof createContext>;
 
 export const createContext = () => ({ loaders: createLoaders() });
 
-const createLoaders = () => ({ query: createQueryRunner() });
+const createLoaders = () => ({
+  query: createQueryRunner(),
+  user: new DataLoader(userBatcher)
+});
 
 const createQueryRunner = () => {
   type Parameter = any;
@@ -49,4 +54,10 @@ const createQueryRunner = () => {
       return loader.load(argument) as Promise<T>;
     }
   };
+};
+
+const userBatcher = async (idList: readonly number[]) => {
+  const userList = await getRepository(UserRepository).find({ where: { id: In(idList as number[]) } });
+  const userMap = new Map(userList.map(user => [user.id, user]));
+  return idList.map(userMap.get);
 };
