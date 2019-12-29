@@ -22,7 +22,7 @@ export const user = createField<any, Args>({
       .createQueryBuilder()
       .select("User.*")
       .from(UserRepository, "User")
-      .where(createBracket(args.where, { id: "User.id", name: "User.name" }))
+      .where(createBracket(args.where))
       .getQueryAndParameters();
     const user = await context.loaders.query.load<UserRepository>({ query, parameterList });
     if (user) {

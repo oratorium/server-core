@@ -18,7 +18,7 @@ export const preferences = createField({
       .createQueryBuilder()
       .select("Preference.*")
       .from(PreferenceRepository, "Preference")
-      .where(createBracket(args.where, { id: "Preference.id", name: "Preference.name" }))
+      .where(createBracket(args.where))
       .getQueryAndParameters();
     const preferenceList = await context.loaders.query.load<PreferenceRepository>({ query, parameterList, isArray: true });
     preferenceList.forEach(preference => context.loaders.preference.prime(preference.id, preference));
