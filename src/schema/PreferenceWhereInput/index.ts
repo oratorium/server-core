@@ -15,17 +15,17 @@ const createOperator = () => ({
   }
 });
 
-const ConfigOrWhereInput = new GraphQLInputObjectType({
-  name: "ConfigOrWhereInput",
+const PreferenceOrWhereInput = new GraphQLInputObjectType({
+  name: "PreferenceOrWhereInput",
   fields: { ...createOperator() }
 });
 
-export const ConfigWhereInput = new GraphQLInputObjectType({
-  name: "ConfigWhereInput",
+export const PreferenceWhereInput = new GraphQLInputObjectType({
+  name: "PreferenceWhereInput",
   fields: {
     ...createOperator(),
     or: {
-      type: new GraphQLList(new GraphQLNonNull(ConfigOrWhereInput))
+      type: new GraphQLList(new GraphQLNonNull(PreferenceOrWhereInput))
     }
   }
 });

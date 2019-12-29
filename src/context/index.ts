@@ -2,14 +2,14 @@ import DataLoader from "dataloader";
 import { getConnection, getRepository, In, EntitySchema, ObjectType } from "typeorm";
 
 import { UserRepository } from "../repositories/User";
-import { ConfigRepository } from "../repositories/Config";
+import { PreferenceRepository } from "../repositories/Preference";
 
 export type Context = ReturnType<typeof createContext>;
 
 export const createContext = () => ({ loaders: createLoaders() });
 
 const createLoaders = () => ({
-  config: new DataLoader(createBatcher(ConfigRepository, item => item.id)),
+  preference: new DataLoader(createBatcher(PreferenceRepository, item => item.id)),
   query: createQueryRunner(),
   user: new DataLoader(createBatcher(UserRepository, item => item.id))
 });

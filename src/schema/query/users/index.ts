@@ -21,9 +21,7 @@ export const users = createField({
       .where(createBracket(args.where, { id: "User.id", name: "User.name" }))
       .getQueryAndParameters();
     const userList = await context.loaders.query.load<UserRepository>({ query, parameterList, isArray: true });
-    userList.forEach(user => {
-      context.loaders.user.prime(user.id, user);
-    });
+    userList.forEach(user => context.loaders.user.prime(user.id, user));
     return userList;
   }
 });

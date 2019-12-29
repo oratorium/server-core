@@ -1,7 +1,7 @@
 import { GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 
-export const Config = new GraphQLObjectType({
-  name: "Config",
+export const Preference = new GraphQLObjectType({
+  name: "Preference",
   fields: {
     id: {
       type: GraphQLNonNull(GraphQLInt)

@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({ name: "Config" })
-export class ConfigRepository {
+@Entity({ name: "Preference" })
+export class PreferenceRepository {
   @PrimaryGeneratedColumn({ type: "bigint", unsigned: true })
   id!: number;
 

@@ -1,12 +1,12 @@
 import { GraphQLObjectType } from "graphql";
 
 import { createFieldMap } from "../../utils/graphql-helper";
-import { config } from "./config";
-import { configs } from "./configs";
+import { preference } from "./preference";
+import { preferences } from "./preferences";
 import { user } from "./user";
 import { users } from "./users";
 
 export const query = new GraphQLObjectType({
   name: "Query",
-  fields: createFieldMap({ config, configs, user, users })
+  fields: createFieldMap({ preference, preferences, user, users })
 });
