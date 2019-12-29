@@ -6,5 +6,11 @@ export class UserRepository {
   id!: number;
 
   @Column({ type: "varchar", length: 64 })
+  email!: string;
+
+  @Column({ type: "varchar", length: 64 })
   displayName!: string;
+
+  @Column({ type: "datetime", default: () => "CURRENT_TIMESTAMP" })
+  createdAt!: Date;
 }

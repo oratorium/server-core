@@ -9,6 +9,9 @@ export const User = new GraphQLObjectType({
     id: {
       type: GraphQLNonNull(GraphQLID)
     },
+    email: {
+      type: GraphQLNonNull(GraphQLString)
+    },
     displayName: {
       type: GraphQLNonNull(GraphQLString)
     },
