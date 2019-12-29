@@ -1,16 +1,27 @@
 import DataLoader from "dataloader";
-import { getConnection, getRepository, In } from "typeorm";
+import { getConnection, getRepository, In, EntitySchema, ObjectType } from "typeorm";
 
 import { UserRepository } from "../repositories/User";
+import { ConfigRepository } from "../repositories/Config";
 
 export type Context = ReturnType<typeof createContext>;
 
 export const createContext = () => ({ loaders: createLoaders() });
 
 const createLoaders = () => ({
+  config: new DataLoader(createBatcher(ConfigRepository, item => item.id)),
   query: createQueryRunner(),
-  user: new DataLoader(userBatcher)
+  user: new DataLoader(createBatcher(UserRepository, item => item.id))
 });
+
+const createBatcher = <Entity>(repository: ObjectType<Entity>, getKey: (item: Entity) => number | string) => {
+  const batcher = async (idList: readonly number[]) => {
+    const itemList = await getRepository(repository).find({ where: { id: In(idList as number[]) } });
+    const itemMap = new Map(itemList.map(item => [getKey(item), item]));
+    return idList.map(id => itemMap.get(id) ?? null);
+  };
+  return batcher;
+};
 
 const createQueryRunner = () => {
   type Parameter = any;
@@ -19,6 +30,8 @@ const createQueryRunner = () => {
     parameterList?: Parameter[];
     isArray?: boolean;
   };
+
+  type ArrayOption = Option & { isArray: true };
 
   const batchQuery = async (argumentList: readonly Option[]) => {
     type Argument = {
@@ -49,15 +62,11 @@ const createQueryRunner = () => {
   };
   const loader = new DataLoader(batchQuery, { cache: false });
 
-  return {
-    load<T>(argument: Option) {
-      return loader.load(argument) as Promise<T>;
-    }
-  };
-};
+  function load<T>(argument: ArrayOption): Promise<readonly T[]>;
+  function load<T>(argument: Option): Promise<T>;
+  function load<T>(argument: ArrayOption | Option): any {
+    return loader.load(argument);
+  }
 
-const userBatcher = async (idList: readonly number[]) => {
-  const userList = await getRepository(UserRepository).find({ where: { id: In(idList as number[]) } });
-  const userMap = new Map(userList.map(user => [user.id, user]));
-  return idList.map(userMap.get);
+  return { load };
 };
