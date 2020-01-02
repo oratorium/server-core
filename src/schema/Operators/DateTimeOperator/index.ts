@@ -1,6 +1,6 @@
 import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull } from "graphql";
 
-import { DateTime } from "../DateTime";
+import { DateTime } from "../../DateTime";
 
 const Scalar = DateTime;
 
