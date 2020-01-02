@@ -1,6 +1,6 @@
 import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull } from "graphql";
 
-import { StringOperator } from "../../Operators/StringOperator";
+import { StringOperator } from "../../Operators";
 
 const createOperator = () => ({
   type: {

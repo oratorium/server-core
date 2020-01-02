@@ -1,8 +1,6 @@
 import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull } from "graphql";
 
-import { BooleanOperator } from "../../Operators/BooleanOperator";
-import { IntOperator } from "../../Operators/IntOperator";
-import { StringOperator } from "../../Operators/StringOperator";
+import { BooleanOperator, IntOperator, StringOperator } from "../../Operators";
 
 const createOperator = () => ({
   order: {

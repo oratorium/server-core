@@ -1,6 +1,6 @@
 import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull } from "graphql";
 
-import { DateTimeOperator } from "../../Operators/DateTimeOperator";
+import { DateTimeOperator } from "../../Operators";
 
 const createOperator = () => ({
   createdAt: {
