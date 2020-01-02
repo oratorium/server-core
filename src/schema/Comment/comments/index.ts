@@ -3,8 +3,8 @@ import { getConnection } from "typeorm";
 
 import { CommentRepository } from "../../../repositories/Comment";
 import { createBracket, createField } from "../../../utils/graphql-helper";
-import { PageInt } from "../../PageInt";
-import { PerPageInt } from "../../PerPageInt";
+import { PageInt } from "../../Scalars/PageInt";
+import { PerPageInt } from "../../Scalars/PerPageInt";
 import { CommentOnCommentWhereInput } from "./CommentOnCommentWhereInput";
 
 type Args = {

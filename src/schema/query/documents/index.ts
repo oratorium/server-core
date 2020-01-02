@@ -4,8 +4,8 @@ import { getConnection } from "typeorm";
 import { DocumentRepository } from "../../../repositories/Document";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { Document } from "../../Document";
-import { PageInt } from "../../PageInt";
-import { PerPageInt } from "../../PerPageInt";
+import { PageInt } from "../../Scalars/PageInt";
+import { PerPageInt } from "../../Scalars/PerPageInt";
 import { DocumentsWhereInput } from "./DocumentsWhereInput";
 
 type Args = {

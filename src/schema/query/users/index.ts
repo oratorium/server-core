@@ -3,8 +3,8 @@ import { getConnection } from "typeorm";
 
 import { UserRepository } from "../../../repositories/User";
 import { createBracket, createField } from "../../../utils/graphql-helper";
-import { PageInt } from "../../PageInt";
-import { PerPageInt } from "../../PerPageInt";
+import { PageInt } from "../../Scalars/PageInt";
+import { PerPageInt } from "../../Scalars/PerPageInt";
 import { User } from "../../User";
 import { UsersWhereInput } from "./UsersWhereInput";
 

@@ -5,8 +5,8 @@ import { AttachmentRepository } from "../../../repositories/Attachment";
 import { CommentRepository } from "../../../repositories/Comment";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { Attachment } from "../../Attachment";
-import { PageInt } from "../../PageInt";
-import { PerPageInt } from "../../PerPageInt";
+import { PageInt } from "../../Scalars/PageInt";
+import { PerPageInt } from "../../Scalars/PerPageInt";
 import { AttachmentOnCommentWhereInput } from "./AttachmentOnCommentWhereInput";
 
 type Args = {

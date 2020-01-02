@@ -1,6 +1,6 @@
 import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 
-import { DateTime } from "../DateTime";
+import { DateTime } from "../Scalars/DateTime";
 import { fragment } from "./fragment";
 import { fragments } from "./fragments";
 
