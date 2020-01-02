@@ -9,7 +9,8 @@ const databaseConnectionOptions: ConnectionOptions = {
   database: process.env.DATABASE_CONNECTION_DATABASE!,
   charset: "utf8",
   timezone: "+0.00",
-  logging: true
+  logging: true,
+  multipleStatements: true
 };
 
 export const configs = {

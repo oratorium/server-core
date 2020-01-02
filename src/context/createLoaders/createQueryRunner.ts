@@ -23,26 +23,18 @@ export const createQueryRunner = () => {
       return argument;
     };
     const { query, parameterList } = argumentList.reduce(reduceArgument, { query: "", parameterList: [] });
-    const resultList = await getConnection().query(query, parameterList);
+    const result = await getConnection().query(query, parameterList);
+    const resultList: any[] = argumentList.length === 1 ? [result] : result;
     return argumentList.map(({ isArray }, index) => {
       const result = resultList[index];
-      if (!isArray) {
-        return result;
-      }
-      if (!result) {
-        return [];
-      }
-      if (Array.isArray(result)) {
-        return result;
-      }
-      return [result];
+      return isArray ? result : result[0];
     });
   };
   const loader = new DataLoader(batchQuery, { cache: false });
 
   function load<T>(argument: ArrayOption): Promise<readonly T[]>;
   function load<T>(argument: Option): Promise<T>;
-  function load<T>(argument: ArrayOption | Option): any {
+  function load(argument: any) {
     return loader.load(argument);
   }
 
