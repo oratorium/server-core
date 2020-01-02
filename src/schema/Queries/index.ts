@@ -10,7 +10,7 @@ import { preferences } from "./preferences";
 import { user } from "./user";
 import { users } from "./users";
 
-export const query = new GraphQLObjectType({
+export const Query = new GraphQLObjectType({
   name: "Query",
   fields: createFieldMap({ comment, comments, document, documents, preference, preferences, user, users })
 });
