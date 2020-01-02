@@ -10,9 +10,11 @@ export const createBracket = (where: Where<any> = {}, alias: Alias = {}) =>
   new Brackets(queryBuilder => {
     const hash = createHashGenerator();
     const { or = [], ...andWhere } = where;
+    let isInitialized = false;
     for (const [name, operatorAndValue] of Object.entries<string>(andWhere)) {
       for (const opVal of array<string>(operatorAndValue)) {
         for (const [operator, value] of Object.entries(opVal)) {
+          isInitialized = true;
           const [op, parameter] = operators[operator](hash(), value);
           queryBuilder.andWhere(`${alias[name] || name} ${op}`, parameter);
         }
@@ -24,6 +26,7 @@ export const createBracket = (where: Where<any> = {}, alias: Alias = {}) =>
           for (const [name, operatorAndValue] of Object.entries<string>(orWhere)) {
             for (const opVal of array<string>(operatorAndValue)) {
               for (const [operator, value] of Object.entries(opVal)) {
+                isInitialized = true;
                 const [op, parameter] = operators[operator](hash(), value);
                 queryBuilder.andWhere(`${alias[name] || name} ${op}`, parameter);
               }
@@ -31,6 +34,9 @@ export const createBracket = (where: Where<any> = {}, alias: Alias = {}) =>
           }
         })
       );
+    }
+    if (!isInitialized) {
+      throw new Error("설정한 조건이 없습니다");
     }
   });
 
