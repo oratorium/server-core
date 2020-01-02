@@ -19,6 +19,7 @@ export const preference = createField({
       .select("Preference.*")
       .from(PreferenceRepository, "Preference")
       .where(createBracket(args.where))
+      .limit(1)
       .getQueryAndParameters();
     const preference = await context.loaders.query.load<PreferenceRepository>({ query, parameterList });
     if (preference) {

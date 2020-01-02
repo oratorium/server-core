@@ -23,6 +23,7 @@ export const user = createField<any, Args>({
       .select("User.*")
       .from(UserRepository, "User")
       .where(createBracket(args.where))
+      .limit(1)
       .getQueryAndParameters();
     const user = await context.loaders.query.load<UserRepository>({ query, parameterList });
     if (user) {
