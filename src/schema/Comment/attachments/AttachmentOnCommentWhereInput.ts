@@ -1,24 +1,8 @@
-import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull } from "graphql";
-
+import { createWhereInput } from "../../../utils/graphql-helper";
 import { StringOperator } from "../../Operators";
 
-const createOperator = () => ({
+export const AttachmentOnCommentWhereInput = createWhereInput("AttachmentOnComment", {
   type: {
     type: StringOperator
-  }
-});
-
-const AttachmentOnCommentOrWhereInput = new GraphQLInputObjectType({
-  name: "AttachmentOnCommentOrWhereInput",
-  fields: createOperator()
-});
-
-export const AttachmentOnCommentWhereInput = new GraphQLInputObjectType({
-  name: "AttachmentOnCommentWhereInput",
-  fields: {
-    ...createOperator(),
-    or: {
-      type: new GraphQLList(new GraphQLNonNull(AttachmentOnCommentOrWhereInput))
-    }
   }
 });

@@ -1,8 +1,10 @@
-import { GraphQLInputObjectType, GraphQLInt, GraphQLList, GraphQLNonNull } from "graphql";
+import { GraphQLInt, GraphQLList, GraphQLNonNull } from "graphql";
+
+import { createWhereInput } from "../../utils/graphql-helper";
 
 const Scalar = GraphQLInt;
 
-const createOperator = () => ({
+export const IntOperator = createWhereInput("Int", {
   eq: {
     type: Scalar
   },
@@ -32,20 +34,5 @@ const createOperator = () => ({
   },
   notBeetween: {
     type: new GraphQLList(new GraphQLNonNull(Scalar))
-  }
-});
-
-const IntOrOperator = new GraphQLInputObjectType({
-  name: "IntOrOperator",
-  fields: createOperator()
-});
-
-export const IntOperator = new GraphQLInputObjectType({
-  name: "IntOperator",
-  fields: {
-    ...createOperator(),
-    or: {
-      type: new GraphQLList(new GraphQLNonNull(IntOrOperator))
-    }
   }
 });

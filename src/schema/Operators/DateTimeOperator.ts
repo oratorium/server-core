@@ -1,10 +1,11 @@
-import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull } from "graphql";
+import { GraphQLList, GraphQLNonNull } from "graphql";
 
+import { createWhereInput } from "../../utils/graphql-helper";
 import { DateTime } from "../Scalars/DateTime";
 
 const Scalar = DateTime;
 
-const createOperator = () => ({
+export const DateTimeOperator = createWhereInput("DateTime", {
   eq: {
     type: Scalar
   },
@@ -34,20 +35,5 @@ const createOperator = () => ({
   },
   notBeetween: {
     type: new GraphQLList(new GraphQLNonNull(Scalar))
-  }
-});
-
-const DateTimeOrOperator = new GraphQLInputObjectType({
-  name: "DateTimeOrOperator",
-  fields: createOperator()
-});
-
-export const DateTimeOperator = new GraphQLInputObjectType({
-  name: "DateTimeOperator",
-  fields: {
-    ...createOperator(),
-    or: {
-      type: new GraphQLList(new GraphQLNonNull(DateTimeOrOperator))
-    }
   }
 });

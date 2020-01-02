@@ -1,8 +1,10 @@
-import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull, GraphQLString } from "graphql";
+import { GraphQLList, GraphQLNonNull, GraphQLString } from "graphql";
+
+import { createWhereInput } from "../../utils/graphql-helper";
 
 const Scalar = GraphQLString;
 
-const createOperator = () => ({
+export const StringOperator = createWhereInput("String", {
   eq: {
     type: Scalar
   },
@@ -23,20 +25,5 @@ const createOperator = () => ({
   },
   contains: {
     type: Scalar
-  }
-});
-
-const StringOrOperator = new GraphQLInputObjectType({
-  name: "StringOrOperator",
-  fields: createOperator()
-});
-
-export const StringOperator = new GraphQLInputObjectType({
-  name: "StringOperator",
-  fields: {
-    ...createOperator(),
-    or: {
-      type: new GraphQLList(new GraphQLNonNull(StringOrOperator))
-    }
   }
 });

@@ -1,8 +1,7 @@
-import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull } from "graphql";
-
+import { createWhereInput } from "../../../utils/graphql-helper";
 import { BooleanOperator, IntOperator, StringOperator } from "../../Operators";
 
-const createOperator = () => ({
+export const DocumentFragmentsOnDocumentWhereInput = createWhereInput("DocumentFragmentsOnDocument", {
   order: {
     type: IntOperator
   },
@@ -14,20 +13,5 @@ const createOperator = () => ({
   },
   value: {
     type: StringOperator
-  }
-});
-
-const DocumentFragmentsOnDocumentOrWhereInput = new GraphQLInputObjectType({
-  name: "DocumentFragmentsOnDocumentOrWhereInput",
-  fields: createOperator()
-});
-
-export const DocumentFragmentsOnDocumentWhereInput = new GraphQLInputObjectType({
-  name: "DocumentFragmentsOnDocumentWhereInput",
-  fields: {
-    ...createOperator(),
-    or: {
-      type: new GraphQLList(new GraphQLNonNull(DocumentFragmentsOnDocumentOrWhereInput))
-    }
   }
 });

@@ -1,27 +1,14 @@
-import { GraphQLInputObjectType, GraphQLBoolean, GraphQLList, GraphQLNonNull } from "graphql";
+import { GraphQLBoolean } from "graphql";
+
+import { createWhereInput } from "../../utils/graphql-helper";
 
 const Scalar = GraphQLBoolean;
 
-const createOperator = () => ({
+export const BooleanOperator = createWhereInput("Boolean", {
   eq: {
     type: Scalar
   },
   notEq: {
     type: Scalar
-  }
-});
-
-const BooleanOrOperator = new GraphQLInputObjectType({
-  name: "BooleanOrOperator",
-  fields: createOperator()
-});
-
-export const BooleanOperator = new GraphQLInputObjectType({
-  name: "BooleanOperator",
-  fields: {
-    ...createOperator(),
-    or: {
-      type: new GraphQLList(new GraphQLNonNull(BooleanOrOperator))
-    }
   }
 });

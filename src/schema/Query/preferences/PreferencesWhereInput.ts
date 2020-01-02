@@ -1,8 +1,7 @@
-import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull } from "graphql";
-
+import { createWhereInput } from "../../../utils/graphql-helper";
 import { IdOperator, StringOperator } from "../../Operators";
 
-const createOperator = () => ({
+export const PreferencesWhereInput = createWhereInput("Preferences", {
   id: {
     type: IdOperator
   },
@@ -11,20 +10,5 @@ const createOperator = () => ({
   },
   key: {
     type: StringOperator
-  }
-});
-
-const PreferencesOrWhereInput = new GraphQLInputObjectType({
-  name: "PreferencesOrWhereInput",
-  fields: createOperator()
-});
-
-export const PreferencesWhereInput = new GraphQLInputObjectType({
-  name: "PreferencesWhereInput",
-  fields: {
-    ...createOperator(),
-    or: {
-      type: new GraphQLList(new GraphQLNonNull(PreferencesOrWhereInput))
-    }
   }
 });

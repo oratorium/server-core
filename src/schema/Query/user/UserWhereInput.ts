@@ -1,8 +1,7 @@
-import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull } from "graphql";
-
+import { createWhereInput } from "../../../utils/graphql-helper";
 import { DateTimeOperator, IdOperator, StringOperator } from "../../Operators";
 
-const createOperator = () => ({
+export const UserWhereInput = createWhereInput("User", {
   id: {
     type: IdOperator
   },
@@ -14,20 +13,5 @@ const createOperator = () => ({
   },
   createdAt: {
     type: DateTimeOperator
-  }
-});
-
-const UserOrWhereInput = new GraphQLInputObjectType({
-  name: "UserOrWhereInput",
-  fields: createOperator()
-});
-
-export const UserWhereInput = new GraphQLInputObjectType({
-  name: "UserWhereInput",
-  fields: {
-    ...createOperator(),
-    or: {
-      type: new GraphQLList(new GraphQLNonNull(UserOrWhereInput))
-    }
   }
 });
