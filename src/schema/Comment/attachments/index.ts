@@ -1,13 +1,13 @@
 import { GraphQLList, GraphQLNonNull } from "graphql";
 import { getConnection } from "typeorm";
 
-import { CommentRepository } from "../../../repositories/Comment";
 import { AttachmentRepository } from "../../../repositories/Attachment";
+import { CommentRepository } from "../../../repositories/Comment";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { Attachment } from "../../Attachment";
-import { AttachmentChildrenWhereInput } from "../../AttachmentChildrenWhereInput";
 import { PageInt } from "../../PageInt";
 import { PerPageInt } from "../../PerPageInt";
+import { AttachmentOnCommentWhereInput } from "./AttachmentOnCommentWhereInput";
 
 type Args = {
   page: number;
@@ -27,7 +27,7 @@ export const attachments = createField<CommentRepository, Args>({
       defaultValue: 20
     },
     where: {
-      type: AttachmentChildrenWhereInput
+      type: AttachmentOnCommentWhereInput
     }
   },
   async resolve(parent, args, context, info) {

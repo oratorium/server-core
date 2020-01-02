@@ -4,13 +4,13 @@ import { DocumentRepository } from "../../../repositories/Document";
 import { DocumentFragmentRepository } from "../../../repositories/DocumentFragment";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { DocumentFragment } from "../../DocumentFragment";
-import { DocumentFragmentChildrenWhereInput } from "../../DocumentFragmentChildrenWhereInput";
+import { DocumentFragmentOnDocumentWhereInput } from "./DocumentFragmentOnDocumentWhereInput";
 
 export const fragment = createField<DocumentRepository>({
   type: DocumentFragment,
   args: {
     where: {
-      type: DocumentFragmentChildrenWhereInput
+      type: DocumentFragmentOnDocumentWhereInput
     }
   },
   async resolve(parent, args, context, info) {

@@ -1,3 +1,5 @@
+console.time();
+
 import { ApolloServer } from "apollo-server-fastify";
 import Fastify from "fastify";
 import { printSchema } from "graphql";
@@ -19,6 +21,7 @@ const run = async () => {
   await createServer().listen(configs.port);
   console.log(printSchema(schema));
   console.log("RUNNING");
+  console.timeEnd();
 };
 
 run();

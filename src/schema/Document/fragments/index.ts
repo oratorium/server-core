@@ -5,7 +5,7 @@ import { DocumentRepository } from "../../../repositories/Document";
 import { DocumentFragmentRepository } from "../../../repositories/DocumentFragment";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { DocumentFragment } from "../../DocumentFragment";
-import { DocumentFragmentChildrenWhereInput } from "../../DocumentFragmentChildrenWhereInput";
+import { DocumentFragmentsOnDocumentWhereInput } from "./DocumentFragmentsOnDocumentWhereInput";
 import { PageInt } from "../../PageInt";
 import { PerPageInt } from "../../PerPageInt";
 
@@ -27,7 +27,7 @@ export const fragments = createField<DocumentRepository, Args>({
       defaultValue: 20
     },
     where: {
-      type: DocumentFragmentChildrenWhereInput
+      type: DocumentFragmentsOnDocumentWhereInput
     }
   },
   async resolve(parent, args, context, info) {
