@@ -8,9 +8,11 @@ import { createBatcher } from "./createBatcher";
 import { createQueryRunner } from "./createQueryRunner";
 
 export const createLoaders = () => ({
-  document: new DataLoader(createBatcher(DocumentRepository, item => item.id)),
-  documentFragment: new DataLoader(createBatcher(DocumentFragmentRepository, item => item.id)),
-  preference: new DataLoader(createBatcher(PreferenceRepository, item => item.id)),
+  document: new DataLoader(createBatcher(DocumentRepository, getId)),
+  documentFragment: new DataLoader(createBatcher(DocumentFragmentRepository, getId)),
+  preference: new DataLoader(createBatcher(PreferenceRepository, getId)),
   query: createQueryRunner(),
-  user: new DataLoader(createBatcher(UserRepository, item => item.id))
+  user: new DataLoader(createBatcher(UserRepository, getId))
 });
+
+const getId = (item: { id: number | string }) => item.id;
