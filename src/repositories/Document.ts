@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-@Entity({ name: "Preference" })
-export class PreferenceRepository {
+@Entity({ name: "Document" })
+export class DocumentRepository {
   @PrimaryGeneratedColumn({ type: "bigint", unsigned: true })
   id!: number;
 
-  @Column({ type: "bigint", unsigned: true })
-  kindId!: number;
-
   @Column({ type: "varchar", length: 64 })
-  key!: string;
+  name!: number;
+
+  @Column({ type: "datetime", default: () => "CURRENT_TIMESTAMP" })
+  createdAt!: Date;
 }

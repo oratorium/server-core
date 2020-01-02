@@ -1,6 +1,9 @@
 import { createConnection } from "typeorm";
 
 import { configs } from "../configs";
+import { DocumentRepository } from "./Document";
+import { DocumentFragmentRepository } from "./DocumentFragment";
+import { KindRepository } from "./Kind";
 import { PreferenceRepository } from "./Preference";
 import { UserRepository } from "./User";
 
@@ -15,7 +18,7 @@ const createDatabaseIfNotExists = async () => {
 };
 
 const synchorinzeRepositories = async () => {
-  const entities = [PreferenceRepository, UserRepository];
+  const entities = [DocumentRepository, DocumentFragmentRepository, KindRepository, PreferenceRepository, UserRepository];
   const connectionOption = { ...configs.databaseConnectionOptions, entities };
   const connection = await createConnection(connectionOption);
   await connection.synchronize();
