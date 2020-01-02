@@ -4,9 +4,9 @@ import { getConnection } from "typeorm";
 import { CommentRepository } from "../../../repositories/Comment";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { Comment } from "../../Comment";
-import { CommentWhereInput } from "../../CommentWhereInput";
 import { PageInt } from "../../PageInt";
 import { PerPageInt } from "../../PerPageInt";
+import { CommentsWhereInput } from "./CommentsWhereInput";
 
 type Args = {
   page: number;
@@ -26,7 +26,7 @@ export const comments = createField<any, Args>({
       defaultValue: 20
     },
     where: {
-      type: new GraphQLNonNull(CommentWhereInput)
+      type: new GraphQLNonNull(CommentsWhereInput)
     }
   },
   async resolve(parent, args, context, info) {

@@ -4,7 +4,7 @@ import { getConnection } from "typeorm";
 import { UserRepository } from "../../../repositories/User";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { User } from "../../User";
-import { UserWhereInput } from "../../UserWhereInput";
+import { UserWhereInput } from "./UserWhereInput";
 
 type Args = {
   where: any;

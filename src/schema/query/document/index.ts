@@ -4,7 +4,7 @@ import { getConnection } from "typeorm";
 import { DocumentRepository } from "../../../repositories/Document";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { Document } from "../../Document";
-import { DocumentWhereInput } from "../../DocumentWhereInput";
+import { DocumentWhereInput } from "./DocumentWhereInput";
 
 export const document = createField({
   type: Document,

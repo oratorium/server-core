@@ -1,9 +1,9 @@
 import { GraphQLInputObjectType, GraphQLList, GraphQLNonNull } from "graphql";
 
-import { DateTimeOperator } from "../DateTimeOperator";
-import { IdOperator } from "../IdOperator";
-import { IntOperator } from "../IntOperator";
-import { StringOperator } from "../StringOperator";
+import { DateTimeOperator } from "../../DateTimeOperator";
+import { IdOperator } from "../../IdOperator";
+import { IntOperator } from "../../IntOperator";
+import { StringOperator } from "../../StringOperator";
 
 const createOperator = () => ({
   id: {
@@ -35,17 +35,17 @@ const createOperator = () => ({
   }
 });
 
-const CommentOrWhereInput = new GraphQLInputObjectType({
-  name: "CommentOrWhereInput",
+const CommentsOrWhereInput = new GraphQLInputObjectType({
+  name: "CommentsOrWhereInput",
   fields: createOperator()
 });
 
-export const CommentWhereInput = new GraphQLInputObjectType({
-  name: "CommentWhereInput",
+export const CommentsWhereInput = new GraphQLInputObjectType({
+  name: "CommentsWhereInput",
   fields: {
     ...createOperator(),
     or: {
-      type: new GraphQLList(new GraphQLNonNull(CommentOrWhereInput))
+      type: new GraphQLList(new GraphQLNonNull(CommentsOrWhereInput))
     }
   }
 });

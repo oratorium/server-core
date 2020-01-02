@@ -4,9 +4,9 @@ import { getConnection } from "typeorm";
 import { DocumentRepository } from "../../../repositories/Document";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { Document } from "../../Document";
-import { DocumentWhereInput } from "../../DocumentWhereInput";
 import { PageInt } from "../../PageInt";
 import { PerPageInt } from "../../PerPageInt";
+import { DocumentsWhereInput } from "./DocumentsWhereInput";
 
 type Args = {
   page: number;
@@ -26,7 +26,7 @@ export const documents = createField<any, Args>({
       defaultValue: 20
     },
     where: {
-      type: new GraphQLNonNull(DocumentWhereInput)
+      type: new GraphQLNonNull(DocumentsWhereInput)
     }
   },
   async resolve(parent, args, context, info) {

@@ -6,7 +6,7 @@ import { createBracket, createField } from "../../../utils/graphql-helper";
 import { PageInt } from "../../PageInt";
 import { PerPageInt } from "../../PerPageInt";
 import { User } from "../../User";
-import { UserWhereInput } from "../../UserWhereInput";
+import { UsersWhereInput } from "./UsersWhereInput";
 
 type Args = {
   page: number;
@@ -26,7 +26,7 @@ export const users = createField<any, Args>({
       defaultValue: 20
     },
     where: {
-      type: new GraphQLNonNull(UserWhereInput)
+      type: new GraphQLNonNull(UsersWhereInput)
     }
   },
   async resolve(parent, args, context, info) {

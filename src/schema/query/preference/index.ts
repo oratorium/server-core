@@ -4,7 +4,7 @@ import { getConnection } from "typeorm";
 import { PreferenceRepository } from "../../../repositories/Preference";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { Preference } from "../../Preference";
-import { PreferenceWhereInput } from "../../PreferenceWhereInput";
+import { PreferenceWhereInput } from "./PreferenceWhereInput";
 
 export const preference = createField({
   type: Preference,
