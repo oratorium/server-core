@@ -4,4 +4,4 @@ import { Context } from "../../context";
 
 export const createFieldMap = <TSource = any, TArgs = { [argName: string]: any }>(
   fieldMap: GraphQLFieldConfigMap<TSource, Context, TArgs> | (() => GraphQLFieldConfigMap<TSource, Context, TArgs>)
-) => (typeof fieldMap === "function" ? fieldMap() : fieldMap) as GraphQLFieldConfigMap<any, any, any>;
+) => fieldMap as GraphQLFieldConfigMap<any, any, any> | (() => GraphQLFieldConfigMap<any, any, any>);

@@ -1,8 +1,10 @@
 import { GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 
+import { createFieldMap } from "../../utils/graphql-helper";
+
 export const Preference = new GraphQLObjectType({
   name: "Preference",
-  fields: {
+  fields: createFieldMap({
     id: {
       type: GraphQLNonNull(GraphQLInt)
     },
@@ -12,5 +14,5 @@ export const Preference = new GraphQLObjectType({
     key: {
       type: GraphQLNonNull(GraphQLString)
     }
-  }
+  })
 });

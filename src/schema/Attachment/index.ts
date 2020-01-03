@@ -1,8 +1,10 @@
 import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 
+import { createFieldMap } from "../../utils/graphql-helper";
+
 export const Attachment = new GraphQLObjectType({
   name: "Attachment",
-  fields: {
+  fields: createFieldMap({
     id: {
       type: GraphQLNonNull(GraphQLID)
     },
@@ -15,5 +17,5 @@ export const Attachment = new GraphQLObjectType({
     value: {
       type: GraphQLNonNull(GraphQLString)
     }
-  }
+  })
 });

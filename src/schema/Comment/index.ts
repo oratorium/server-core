@@ -1,13 +1,15 @@
-import { GraphQLID, GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
+import { GraphQLBoolean, GraphQLID, GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 
+import { CommentRepository } from "../../repositories/Comment";
+import { createFieldMap } from "../../utils/graphql-helper";
 import { DateTime } from "../Scalars/DateTime";
 import { attachments } from "./attachments";
-import { comments } from "./comments";
 import { author } from "./author";
+import { comments } from "./comments";
 
 export const Comment = new GraphQLObjectType({
   name: "Comment",
-  fields: () => ({
+  fields: createFieldMap<CommentRepository>(() => ({
     id: {
       type: GraphQLNonNull(GraphQLID)
     },
@@ -15,7 +17,7 @@ export const Comment = new GraphQLObjectType({
       type: GraphQLNonNull(GraphQLID)
     },
     parentId: {
-      type: GraphQLNonNull(GraphQLID)
+      type: GraphQLID
     },
     depth: {
       type: GraphQLNonNull(GraphQLInt)
@@ -25,6 +27,12 @@ export const Comment = new GraphQLObjectType({
     },
     text: {
       type: GraphQLNonNull(GraphQLString)
+    },
+    isDeleted: {
+      type: GraphQLNonNull(GraphQLBoolean),
+      resolve(parent, args, context, info) {
+        return !!parent.deletedAt;
+      }
     },
     createdAt: {
       type: GraphQLNonNull(DateTime)
@@ -38,5 +46,5 @@ export const Comment = new GraphQLObjectType({
     attachments,
     comments: comments(Comment),
     author
-  })
+  }))
 });

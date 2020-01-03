@@ -1,8 +1,10 @@
 import { GraphQLBoolean, GraphQLID, GraphQLInt, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 
+import { createFieldMap } from "../../utils/graphql-helper";
+
 export const DocumentFragment = new GraphQLObjectType({
   name: "DocumentFragment",
-  fields: {
+  fields: createFieldMap({
     id: {
       type: GraphQLNonNull(GraphQLID)
     },
@@ -21,5 +23,5 @@ export const DocumentFragment = new GraphQLObjectType({
     value: {
       type: GraphQLNonNull(GraphQLString)
     }
-  }
+  })
 });

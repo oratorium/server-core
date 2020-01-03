@@ -1,10 +1,11 @@
 import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 
+import { createFieldMap } from "../../utils/graphql-helper";
 import { DateTime } from "../Scalars/DateTime";
 
 export const Kind = new GraphQLObjectType({
   name: "Kind",
-  fields: {
+  fields: createFieldMap({
     id: {
       type: GraphQLNonNull(GraphQLID)
     },
@@ -17,5 +18,5 @@ export const Kind = new GraphQLObjectType({
     createdAt: {
       type: GraphQLNonNull(DateTime)
     }
-  }
+  })
 });
