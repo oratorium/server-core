@@ -4,7 +4,7 @@ import { createWhereInput } from "../../utils/graphql-helper";
 
 const Scalar = GraphQLID;
 
-export const IdOperator = createWhereInput("Id", {
+const fields = {
   eq: {
     type: Scalar
   },
@@ -26,4 +26,8 @@ export const IdOperator = createWhereInput("Id", {
   contains: {
     type: Scalar
   }
-});
+};
+
+export const IdOperator = createWhereInput("Id", fields);
+
+export const NullableIdOperator = createWhereInput("Id", fields, { isNullable: true });

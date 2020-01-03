@@ -4,7 +4,7 @@ import { createWhereInput } from "../../utils/graphql-helper";
 
 const Scalar = GraphQLString;
 
-export const StringOperator = createWhereInput("String", {
+const fields = {
   eq: {
     type: Scalar
   },
@@ -26,4 +26,8 @@ export const StringOperator = createWhereInput("String", {
   contains: {
     type: Scalar
   }
-});
+};
+
+export const StringOperator = createWhereInput("String", fields);
+
+export const NullableStringOperator = createWhereInput("NullableString", fields, { isNullable: true });

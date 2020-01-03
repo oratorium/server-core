@@ -69,5 +69,6 @@ const operators = {
   notBetween: (key: string, [start, end]: any) => [
     `BETWEEN :${key}_start AND :${key}_end`,
     { [`${key}_start`]: start, [`${key}_end`]: end }
-  ]
+  ],
+  isNull: (key: string, value: boolean) => [value ? "IS NULL" : "IS NOT NULL"]
 };

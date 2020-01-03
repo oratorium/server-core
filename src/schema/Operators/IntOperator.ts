@@ -4,7 +4,7 @@ import { createWhereInput } from "../../utils/graphql-helper";
 
 const Scalar = GraphQLInt;
 
-export const IntOperator = createWhereInput("Int", {
+const fields = {
   eq: {
     type: Scalar
   },
@@ -35,4 +35,8 @@ export const IntOperator = createWhereInput("Int", {
   notBeetween: {
     type: new GraphQLList(new GraphQLNonNull(Scalar))
   }
-});
+};
+
+export const IntOperator = createWhereInput("Int", fields);
+
+export const NullableIntOperator = createWhereInput("NullableInt", fields, { isNullable: true });

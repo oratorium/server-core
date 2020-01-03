@@ -4,11 +4,15 @@ import { createWhereInput } from "../../utils/graphql-helper";
 
 const Scalar = GraphQLBoolean;
 
-export const BooleanOperator = createWhereInput("Boolean", {
+const fields = {
   eq: {
     type: Scalar
   },
   notEq: {
     type: Scalar
   }
-});
+};
+
+export const BooleanOperator = createWhereInput("Boolean", fields);
+
+export const NullableBooleanOperator = createWhereInput("Boolean", fields, { isNullable: true });

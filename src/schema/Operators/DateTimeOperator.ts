@@ -5,7 +5,7 @@ import { DateTime } from "../Scalars/DateTime";
 
 const Scalar = DateTime;
 
-export const DateTimeOperator = createWhereInput("DateTime", {
+const fields = {
   eq: {
     type: Scalar
   },
@@ -36,4 +36,8 @@ export const DateTimeOperator = createWhereInput("DateTime", {
   notBeetween: {
     type: new GraphQLList(new GraphQLNonNull(Scalar))
   }
-});
+};
+
+export const DateTimeOperator = createWhereInput("DateTime", fields);
+
+export const NullableDateTimeOperator = createWhereInput("NullableDateTime", fields, { isNullable: true });
