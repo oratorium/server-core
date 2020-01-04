@@ -16,7 +16,7 @@ export const createBracket = (where: Where<any> = {}, alias: Alias = {}) =>
         for (const [operator, value] of Object.entries(opVal)) {
           isInitialized = true;
           const [op, parameter] = operators[operator](hash(), value);
-          queryBuilder.andWhere(`${alias[name] || name} ${op}`, parameter);
+          queryBuilder.andWhere(`\`${alias[name] || name}\` ${op}`, parameter);
         }
       }
     }
@@ -28,7 +28,7 @@ export const createBracket = (where: Where<any> = {}, alias: Alias = {}) =>
               for (const [operator, value] of Object.entries(opVal)) {
                 isInitialized = true;
                 const [op, parameter] = operators[operator](hash(), value);
-                queryBuilder.andWhere(`${alias[name] || name} ${op}`, parameter);
+                queryBuilder.andWhere(`\`${alias[name] || name}\` ${op}`, parameter);
               }
             }
           }
