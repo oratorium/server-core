@@ -7,8 +7,5 @@ export const CommentsOnCommentWhereInput = createWhereInput("CommentsOnComment",
   },
   updatedAt: {
     type: DateTimeOperator
-  },
-  deletedAt: {
-    type: DateTimeOperator
   }
 });
