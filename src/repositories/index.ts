@@ -9,6 +9,7 @@ import { DocumentFragmentRepository } from "./DocumentFragment";
 import { HashtagRepository } from "./Hashtag";
 import { KindRepository } from "./Kind";
 import { PreferenceRepository } from "./Preference";
+import { UniverseRepository } from "./Universe";
 import { UserRepository } from "./User";
 
 const createDatabaseIfNotExists = async () => {
@@ -31,6 +32,7 @@ const synchorinzeRepositories = async () => {
     HashtagRepository,
     KindRepository,
     PreferenceRepository,
+    UniverseRepository,
     UserRepository
   ];
   const connectionOption = { ...configs.databaseConnectionOptions, entities };
