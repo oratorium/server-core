@@ -33,7 +33,8 @@ export const comments = createField<any, Args>({
       .createQueryBuilder()
       .select("Comment.*")
       .from(CommentRepository, "Comment")
-      .where(createBracket(args.where))
+      .where("Comment.deletedAt IS NULL")
+      .andWhere(createBracket(args.where))
       .offset(args.page * args.perPage)
       .limit(args.perPage);
     const [query, parameterList] = queryBuilder.getQueryAndParameters();

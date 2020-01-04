@@ -8,6 +8,9 @@ export class CommentRepository {
   @Column({ type: "bigint", unsigned: true })
   userId!: number;
 
+  @Column({ type: "bigint", unsigned: true })
+  characterId!: number;
+
   @Column({ type: "bigint", unsigned: true, nullable: true })
   parentId!: null | number;
 

@@ -25,8 +25,5 @@ export const CommentsWhereInput = createWhereInput("Comments", {
   },
   updatedAt: {
     type: DateTimeOperator
-  },
-  deletedAt: {
-    type: DateTimeOperator
   }
 });

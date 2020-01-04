@@ -1,5 +1,4 @@
 import { createWhereInput } from "../../../utils/graphql-helper";
-
 import { DateTimeOperator, IdOperator, IntOperator, StringOperator } from "../../Operators";
 
 export const CommentWhereInput = createWhereInput("Comment", {
@@ -25,9 +24,6 @@ export const CommentWhereInput = createWhereInput("Comment", {
     type: DateTimeOperator
   },
   updatedAt: {
-    type: DateTimeOperator
-  },
-  deletedAt: {
     type: DateTimeOperator
   }
 });
