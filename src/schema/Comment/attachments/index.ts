@@ -7,7 +7,7 @@ import { createBracket, createField } from "../../../utils/graphql-helper";
 import { Attachment } from "../../Attachment";
 import { PageInt } from "../../Scalars/PageInt";
 import { PerPageInt } from "../../Scalars/PerPageInt";
-import { AttachmentOnCommentWhereInput } from "./AttachmentOnCommentWhereInput";
+import { AttachmentsOnCommentWhereInput } from "./AttachmentsOnCommentWhereInput";
 
 type Args = {
   page: number;
@@ -27,7 +27,7 @@ export const attachments = createField<CommentRepository, Args>({
       defaultValue: 20
     },
     where: {
-      type: AttachmentOnCommentWhereInput
+      type: AttachmentsOnCommentWhereInput
     }
   },
   async resolve(parent, args, context, info) {

@@ -5,7 +5,7 @@ import { CommentRepository } from "../../../repositories/Comment";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { PageInt } from "../../Scalars/PageInt";
 import { PerPageInt } from "../../Scalars/PerPageInt";
-import { CommentOnCommentWhereInput } from "./CommentOnCommentWhereInput";
+import { CommentsOnCommentWhereInput } from "./CommentsOnCommentWhereInput";
 
 type Args = {
   page: number;
@@ -26,7 +26,7 @@ export const comments = (Comment: GraphQLObjectType) =>
         defaultValue: 20
       },
       where: {
-        type: CommentOnCommentWhereInput
+        type: CommentsOnCommentWhereInput
       }
     },
     async resolve(parent, args, context, info) {

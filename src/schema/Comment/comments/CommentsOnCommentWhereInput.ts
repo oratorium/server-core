@@ -1,7 +1,7 @@
 import { createWhereInput } from "../../../utils/graphql-helper";
 import { DateTimeOperator } from "../../Operators";
 
-export const CommentOnCommentWhereInput = createWhereInput("CommentOnComment", {
+export const CommentsOnCommentWhereInput = createWhereInput("CommentsOnComment", {
   createdAt: {
     type: DateTimeOperator
   },
