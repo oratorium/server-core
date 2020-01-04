@@ -12,6 +12,7 @@ import { DocumentFragmentRepository } from "./DocumentFragment";
 import { HashtagRepository } from "./Hashtag";
 import { KindRepository } from "./Kind";
 import { PreferenceRepository } from "./Preference";
+import { TokenRepository } from "./Token";
 import { UniverseRepository } from "./Universe";
 import { UserRepository } from "./User";
 
@@ -38,6 +39,7 @@ const synchorinzeRepositories = async () => {
     HashtagRepository,
     KindRepository,
     PreferenceRepository,
+    TokenRepository,
     UniverseRepository,
     UserRepository
   ];

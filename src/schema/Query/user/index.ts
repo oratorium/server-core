@@ -22,7 +22,8 @@ export const user = createField<any, Args>({
       .createQueryBuilder()
       .select("User.*")
       .from(UserRepository, "User")
-      .where(createBracket(args.where))
+      .where("isAuthorized = TRUE")
+      .andWhere(createBracket(args.where))
       .limit(1)
       .getQueryAndParameters();
     return load<UserRepository>(query, parameterList);

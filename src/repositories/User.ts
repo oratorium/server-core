@@ -15,7 +15,16 @@ export class UserRepository {
   email!: string;
 
   @Column({ type: "varchar", length: 64 })
+  password!: string;
+
+  @Column({ type: "varchar", length: 64 })
+  mentionId!: string;
+
+  @Column({ type: "varchar", length: 64 })
   displayName!: string;
+
+  @Column({ type: "bool", default: false })
+  isAuthorized!: boolean;
 
   @Column({ type: "datetime", default: () => "CURRENT_TIMESTAMP" })
   createdAt!: Date;

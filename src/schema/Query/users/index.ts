@@ -33,7 +33,8 @@ export const users = createField<any, Args>({
       .createQueryBuilder()
       .select("User.*")
       .from(UserRepository, "User")
-      .where(createBracket(args.where))
+      .where("isAuthorized = TRUE")
+      .andWhere(createBracket(args.where))
       .offset(args.page * args.perPage)
       .limit(args.perPage);
     const [query, parameterList] = queryBuilder.getQueryAndParameters();
