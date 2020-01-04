@@ -3,8 +3,7 @@ import { getConnection } from "typeorm";
 
 import { AttachmentRepository } from "../../../repositories/Attachment";
 import { CommentRepository } from "../../../repositories/Comment";
-import { createBracket, createField } from "../../../utils/graphql-helper";
-import { loadMany } from "../../../utils/graphql-helper";
+import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
 import { Attachment } from "../../Attachment";
 import { PageInt, PerPageInt } from "../../Scalars";
 import { AttachmentsOnCommentWhereInput } from "./AttachmentsOnCommentWhereInput";

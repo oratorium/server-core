@@ -2,8 +2,7 @@ import { getConnection } from "typeorm";
 
 import { CommentRepository } from "../../../repositories/Comment";
 import { UserRepository } from "../../../repositories/User";
-import { createField } from "../../../utils/graphql-helper";
-import { load } from "../../../utils/graphql-helper";
+import { createField, load } from "../../../utils/graphql-helper";
 import { User } from "../../User";
 
 export const author = createField<CommentRepository>({

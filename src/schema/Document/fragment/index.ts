@@ -2,8 +2,7 @@ import { getConnection } from "typeorm";
 
 import { DocumentRepository } from "../../../repositories/Document";
 import { DocumentFragmentRepository } from "../../../repositories/DocumentFragment";
-import { createBracket, createField } from "../../../utils/graphql-helper";
-import { load } from "../../../utils/graphql-helper";
+import { createBracket, createField, load } from "../../../utils/graphql-helper";
 import { DocumentFragment } from "../../DocumentFragment";
 import { DocumentFragmentOnDocumentWhereInput } from "./DocumentFragmentOnDocumentWhereInput";
 

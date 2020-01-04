@@ -2,8 +2,7 @@ import { GraphQLNonNull } from "graphql";
 import { getConnection } from "typeorm";
 
 import { UserRepository } from "../../../repositories/User";
-import { createBracket, createField } from "../../../utils/graphql-helper";
-import { load } from "../../../utils/graphql-helper";
+import { createBracket, createField, load } from "../../../utils/graphql-helper";
 import { User } from "../../User";
 import { UserWhereInput } from "./UserWhereInput";
 

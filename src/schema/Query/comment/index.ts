@@ -2,8 +2,7 @@ import { GraphQLNonNull } from "graphql";
 import { getConnection } from "typeorm";
 
 import { CommentRepository } from "../../../repositories/Comment";
-import { createBracket, createField } from "../../../utils/graphql-helper";
-import { load } from "../../../utils/graphql-helper";
+import { createBracket, createField, load } from "../../../utils/graphql-helper";
 import { Comment } from "../../Comment";
 import { CommentWhereInput } from "./CommentWhereInput";
 

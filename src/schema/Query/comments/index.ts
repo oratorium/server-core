@@ -2,8 +2,7 @@ import { GraphQLList, GraphQLNonNull } from "graphql";
 import { getConnection } from "typeorm";
 
 import { CommentRepository } from "../../../repositories/Comment";
-import { createBracket, createField } from "../../../utils/graphql-helper";
-import { loadMany } from "../../../utils/graphql-helper";
+import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
 import { Comment } from "../../Comment";
 import { PageInt, PerPageInt } from "../../Scalars";
 import { CommentsWhereInput } from "./CommentsWhereInput";

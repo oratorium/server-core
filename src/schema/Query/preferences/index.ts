@@ -2,8 +2,7 @@ import { GraphQLList, GraphQLNonNull } from "graphql";
 import { getConnection } from "typeorm";
 
 import { PreferenceRepository } from "../../../repositories/Preference";
-import { createBracket, createField } from "../../../utils/graphql-helper";
-import { loadMany } from "../../../utils/graphql-helper";
+import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
 import { Preference } from "../../Preference";
 import { PageInt, PerPageInt } from "../../Scalars";
 import { PreferencesWhereInput } from "./PreferencesWhereInput";
