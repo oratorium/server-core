@@ -3,6 +3,7 @@ import { getConnection } from "typeorm";
 
 import { UserRepository } from "../../../repositories/User";
 import { createBracket, createField } from "../../../utils/graphql-helper";
+import { load } from "../../../utils/graphql-helper";
 import { User } from "../../User";
 import { UserWhereInput } from "./UserWhereInput";
 
@@ -17,7 +18,7 @@ export const user = createField<any, Args>({
       type: new GraphQLNonNull(UserWhereInput)
     }
   },
-  async resolve(parent, args, context, info) {
+  resolve(parent, args, context, info) {
     const [query, parameterList] = getConnection()
       .createQueryBuilder()
       .select("User.*")
@@ -25,10 +26,6 @@ export const user = createField<any, Args>({
       .where(createBracket(args.where))
       .limit(1)
       .getQueryAndParameters();
-    const user = await context.loaders.query.load<UserRepository>({ query, parameterList });
-    if (user) {
-      context.loaders.user.prime(user.id, user);
-    }
-    return user;
+    return load<UserRepository>(query, parameterList);
   }
 });

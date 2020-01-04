@@ -3,6 +3,7 @@ import { getConnection } from "typeorm";
 
 import { UserRepository } from "../../../repositories/User";
 import { createBracket, createField } from "../../../utils/graphql-helper";
+import { loadMany } from "../../../utils/graphql-helper";
 import { PageInt } from "../../Scalars/PageInt";
 import { PerPageInt } from "../../Scalars/PerPageInt";
 import { User } from "../../User";
@@ -29,7 +30,7 @@ export const users = createField<any, Args>({
       type: new GraphQLNonNull(UsersWhereInput)
     }
   },
-  async resolve(parent, args, context, info) {
+  resolve(parent, args, context, info) {
     const queryBuilder = getConnection()
       .createQueryBuilder()
       .select("User.*")
@@ -38,8 +39,6 @@ export const users = createField<any, Args>({
       .offset(args.page * args.perPage)
       .limit(args.perPage);
     const [query, parameterList] = queryBuilder.getQueryAndParameters();
-    const userList = await context.loaders.query.load<UserRepository>({ query, parameterList, isArray: true });
-    userList.forEach(user => context.loaders.user.prime(user.id, user));
-    return userList;
+    return loadMany<UserRepository>(query, parameterList);
   }
 });

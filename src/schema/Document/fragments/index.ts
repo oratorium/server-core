@@ -4,10 +4,11 @@ import { getConnection } from "typeorm";
 import { DocumentRepository } from "../../../repositories/Document";
 import { DocumentFragmentRepository } from "../../../repositories/DocumentFragment";
 import { createBracket, createField } from "../../../utils/graphql-helper";
+import { load } from "../../../utils/graphql-helper";
 import { DocumentFragment } from "../../DocumentFragment";
-import { DocumentFragmentsOnDocumentWhereInput } from "./DocumentFragmentsOnDocumentWhereInput";
 import { PageInt } from "../../Scalars/PageInt";
 import { PerPageInt } from "../../Scalars/PerPageInt";
+import { DocumentFragmentsOnDocumentWhereInput } from "./DocumentFragmentsOnDocumentWhereInput";
 
 type Args = {
   page: number;
@@ -30,7 +31,7 @@ export const fragments = createField<DocumentRepository, Args>({
       type: DocumentFragmentsOnDocumentWhereInput
     }
   },
-  async resolve(parent, args, context, info) {
+  resolve(parent, args, context, info) {
     const queryBuilder = getConnection()
       .createQueryBuilder()
       .select("DocumentFragment.*")
@@ -42,8 +43,6 @@ export const fragments = createField<DocumentRepository, Args>({
       queryBuilder.andWhere(createBracket(args.where));
     }
     const [query, parameterList] = queryBuilder.getQueryAndParameters();
-    const docuemtnFragmentList = await context.loaders.query.load<DocumentFragmentRepository>({ query, parameterList, isArray: true });
-    docuemtnFragmentList.forEach(fragment => context.loaders.documentFragment.prime(fragment.id, fragment));
-    return docuemtnFragmentList;
+    return load<DocumentFragmentRepository>(query, parameterList);
   }
 });

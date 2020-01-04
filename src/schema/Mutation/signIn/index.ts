@@ -26,7 +26,6 @@ export const signIn = createField<any, Args>({
     if (!user) {
       throw new Error("이메일 혹은 암호가 올바르지 않습니다");
     }
-    context.loaders.user.prime(user.id, user);
     return user;
   }
 });

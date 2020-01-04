@@ -3,6 +3,7 @@ import { getConnection } from "typeorm";
 
 import { DocumentRepository } from "../../../repositories/Document";
 import { createBracket, createField } from "../../../utils/graphql-helper";
+import { loadMany } from "../../../utils/graphql-helper";
 import { Document } from "../../Document";
 import { PageInt } from "../../Scalars/PageInt";
 import { PerPageInt } from "../../Scalars/PerPageInt";
@@ -29,7 +30,7 @@ export const documents = createField<any, Args>({
       type: new GraphQLNonNull(DocumentsWhereInput)
     }
   },
-  async resolve(parent, args, context, info) {
+  resolve(parent, args, context, info) {
     const queryBuilder = getConnection()
       .createQueryBuilder()
       .select("Document.*")
@@ -38,8 +39,6 @@ export const documents = createField<any, Args>({
       .offset(args.page * args.perPage)
       .limit(args.perPage);
     const [query, parameterList] = queryBuilder.getQueryAndParameters();
-    const documentList = await context.loaders.query.load<DocumentRepository>({ query, parameterList, isArray: true });
-    documentList.forEach(document => context.loaders.document.prime(document.id, document));
-    return documentList;
+    return loadMany<DocumentRepository>(query, parameterList);
   }
 });

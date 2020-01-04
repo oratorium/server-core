@@ -3,6 +3,7 @@ import { getConnection } from "typeorm";
 
 import { DocumentRepository } from "../../../repositories/Document";
 import { createBracket, createField } from "../../../utils/graphql-helper";
+import { load } from "../../../utils/graphql-helper";
 import { Document } from "../../Document";
 import { DocumentWhereInput } from "./DocumentWhereInput";
 
@@ -13,7 +14,7 @@ export const document = createField({
       type: new GraphQLNonNull(DocumentWhereInput)
     }
   },
-  async resolve(parent, args, context, info) {
+  resolve(parent, args, context, info) {
     const [query, parameterList] = getConnection()
       .createQueryBuilder()
       .select("Document.*")
@@ -21,10 +22,6 @@ export const document = createField({
       .where(createBracket(args.where))
       .limit(1)
       .getQueryAndParameters();
-    const document = await context.loaders.query.load<DocumentRepository>({ query, parameterList });
-    if (document) {
-      context.loaders.document.prime(document.id, document);
-    }
-    return document;
+    return load<DocumentRepository>(query, parameterList);
   }
 });

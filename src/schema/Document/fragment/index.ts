@@ -3,6 +3,7 @@ import { getConnection } from "typeorm";
 import { DocumentRepository } from "../../../repositories/Document";
 import { DocumentFragmentRepository } from "../../../repositories/DocumentFragment";
 import { createBracket, createField } from "../../../utils/graphql-helper";
+import { load } from "../../../utils/graphql-helper";
 import { DocumentFragment } from "../../DocumentFragment";
 import { DocumentFragmentOnDocumentWhereInput } from "./DocumentFragmentOnDocumentWhereInput";
 
@@ -13,7 +14,7 @@ export const fragment = createField<DocumentRepository>({
       type: DocumentFragmentOnDocumentWhereInput
     }
   },
-  async resolve(parent, args, context, info) {
+  resolve(parent, args, context, info) {
     const queryBuilder = getConnection()
       .createQueryBuilder()
       .select("DocumentFragment.*")
@@ -24,10 +25,6 @@ export const fragment = createField<DocumentRepository>({
       queryBuilder.andWhere(createBracket(args.where));
     }
     const [query, parameterList] = queryBuilder.getQueryAndParameters();
-    const documentFragment = await context.loaders.query.load<DocumentFragmentRepository>({ query, parameterList });
-    if (documentFragment) {
-      context.loaders.documentFragment.prime(documentFragment.id, documentFragment);
-    }
-    return documentFragment;
+    return load<DocumentFragmentRepository>(query, parameterList);
   }
 });

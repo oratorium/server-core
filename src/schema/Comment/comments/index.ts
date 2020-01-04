@@ -3,6 +3,7 @@ import { getConnection } from "typeorm";
 
 import { CommentRepository } from "../../../repositories/Comment";
 import { createBracket, createField } from "../../../utils/graphql-helper";
+import { loadMany } from "../../../utils/graphql-helper";
 import { PageInt } from "../../Scalars/PageInt";
 import { PerPageInt } from "../../Scalars/PerPageInt";
 import { CommentsOnCommentWhereInput } from "./CommentsOnCommentWhereInput";
@@ -29,7 +30,7 @@ export const comments = (Comment: GraphQLObjectType) =>
         type: CommentsOnCommentWhereInput
       }
     },
-    async resolve(parent, args, context, info) {
+    resolve(parent, args, context, info) {
       const queryBuilder = getConnection()
         .createQueryBuilder()
         .select("Comment.*")
@@ -41,8 +42,6 @@ export const comments = (Comment: GraphQLObjectType) =>
         queryBuilder.andWhere(createBracket(args.where));
       }
       const [query, parameterList] = queryBuilder.getQueryAndParameters();
-      const commentList = await context.loaders.query.load<CommentRepository>({ query, parameterList, isArray: true });
-      commentList.forEach(comment => context.loaders.comment.prime(comment.id, comment));
-      return commentList;
+      return loadMany<CommentRepository>(query, parameterList);
     }
   });

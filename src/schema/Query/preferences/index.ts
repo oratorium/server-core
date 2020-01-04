@@ -3,9 +3,10 @@ import { getConnection } from "typeorm";
 
 import { PreferenceRepository } from "../../../repositories/Preference";
 import { createBracket, createField } from "../../../utils/graphql-helper";
+import { loadMany } from "../../../utils/graphql-helper";
+import { Preference } from "../../Preference";
 import { PageInt } from "../../Scalars/PageInt";
 import { PerPageInt } from "../../Scalars/PerPageInt";
-import { Preference } from "../../Preference";
 import { PreferencesWhereInput } from "./PreferencesWhereInput";
 
 type Args = {
@@ -29,7 +30,7 @@ export const preferences = createField<any, Args>({
       type: new GraphQLNonNull(PreferencesWhereInput)
     }
   },
-  async resolve(parent, args, context, info) {
+  resolve(parent, args, context, info) {
     const queryBuilder = getConnection()
       .createQueryBuilder()
       .select("Preference.*")
@@ -38,8 +39,6 @@ export const preferences = createField<any, Args>({
       .offset(args.page * args.perPage)
       .limit(args.perPage);
     const [query, parameterList] = queryBuilder.getQueryAndParameters();
-    const preferenceList = await context.loaders.query.load<PreferenceRepository>({ query, parameterList, isArray: true });
-    preferenceList.forEach(preference => context.loaders.preference.prime(preference.id, preference));
-    return preferenceList;
+    return loadMany<PreferenceRepository>(query, parameterList);
   }
 });
