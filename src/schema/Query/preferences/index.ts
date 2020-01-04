@@ -5,8 +5,7 @@ import { PreferenceRepository } from "../../../repositories/Preference";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { loadMany } from "../../../utils/graphql-helper";
 import { Preference } from "../../Preference";
-import { PageInt } from "../../Scalars/PageInt";
-import { PerPageInt } from "../../Scalars/PerPageInt";
+import { PageInt, PerPageInt } from "../../Scalars";
 import { PreferencesWhereInput } from "./PreferencesWhereInput";
 
 type Args = {

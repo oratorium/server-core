@@ -1,7 +1,7 @@
 import { GraphQLObjectType, GraphQLNonNull, GraphQLID, GraphQLString } from "graphql";
 
 import { createFieldMap } from "../../utils/graphql-helper";
-import { DateTime } from "../Scalars/DateTime";
+import { DateTime } from "../Scalars";
 
 export const Self = new GraphQLObjectType({
   name: "Self",

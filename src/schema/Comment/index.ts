@@ -2,10 +2,11 @@ import { GraphQLBoolean, GraphQLID, GraphQLInt, GraphQLNonNull, GraphQLObjectTyp
 
 import { CommentRepository } from "../../repositories/Comment";
 import { createFieldMap } from "../../utils/graphql-helper";
-import { DateTime } from "../Scalars/DateTime";
+import { DateTime } from "../Scalars";
 import { attachments } from "./attachments";
 import { author } from "./author";
 import { comments } from "./comments";
+import { hashtags } from "./hashtags";
 
 export const Comment = new GraphQLObjectType({
   name: "Comment",
@@ -44,7 +45,8 @@ export const Comment = new GraphQLObjectType({
       type: DateTime
     },
     attachments,
+    author,
     comments: comments(Comment),
-    author
+    hashtags
   }))
 });

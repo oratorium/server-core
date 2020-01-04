@@ -4,8 +4,7 @@ import { getConnection } from "typeorm";
 import { UserRepository } from "../../../repositories/User";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { loadMany } from "../../../utils/graphql-helper";
-import { PageInt } from "../../Scalars/PageInt";
-import { PerPageInt } from "../../Scalars/PerPageInt";
+import { PageInt, PerPageInt } from "../../Scalars";
 import { User } from "../../User";
 import { UsersWhereInput } from "./UsersWhereInput";
 

@@ -1,7 +1,7 @@
 import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 
 import { createFieldMap } from "../../utils/graphql-helper";
-import { DateTime } from "../Scalars/DateTime";
+import { DateTime } from "../Scalars";
 import { fragment } from "./fragment";
 import { fragments } from "./fragments";
 

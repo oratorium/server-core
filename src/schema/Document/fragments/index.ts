@@ -6,8 +6,7 @@ import { DocumentFragmentRepository } from "../../../repositories/DocumentFragme
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { load } from "../../../utils/graphql-helper";
 import { DocumentFragment } from "../../DocumentFragment";
-import { PageInt } from "../../Scalars/PageInt";
-import { PerPageInt } from "../../Scalars/PerPageInt";
+import { PageInt, PerPageInt } from "../../Scalars";
 import { DocumentFragmentsOnDocumentWhereInput } from "./DocumentFragmentsOnDocumentWhereInput";
 
 type Args = {

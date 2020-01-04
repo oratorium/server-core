@@ -1,7 +1,7 @@
 import { GraphQLList, GraphQLNonNull } from "graphql";
 
 import { createWhereInput } from "../../utils/graphql-helper";
-import { DateTime } from "../Scalars/DateTime";
+import { DateTime } from "../Scalars";
 
 const Scalar = DateTime;
 

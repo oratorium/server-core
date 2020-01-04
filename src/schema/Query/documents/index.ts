@@ -5,8 +5,7 @@ import { DocumentRepository } from "../../../repositories/Document";
 import { createBracket, createField } from "../../../utils/graphql-helper";
 import { loadMany } from "../../../utils/graphql-helper";
 import { Document } from "../../Document";
-import { PageInt } from "../../Scalars/PageInt";
-import { PerPageInt } from "../../Scalars/PerPageInt";
+import { PageInt, PerPageInt } from "../../Scalars";
 import { DocumentsWhereInput } from "./DocumentsWhereInput";
 
 type Args = {
