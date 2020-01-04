@@ -5,7 +5,7 @@ import { AttachmentRepository } from "../../../repositories/Attachment";
 import { CommentRepository } from "../../../repositories/Comment";
 import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
 import { Attachment } from "../../Attachment";
-import { PageInt, PerPageInt } from "../../Scalars";
+import { Page, PerPage } from "../../Scalars";
 import { AttachmentsOnCommentWhereInput } from "./AttachmentsOnCommentWhereInput";
 
 type Args = {
@@ -18,11 +18,11 @@ export const attachments = createField<CommentRepository, Args>({
   type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Attachment))),
   args: {
     page: {
-      type: PageInt,
+      type: Page,
       defaultValue: 0
     },
     perPage: {
-      type: PerPageInt,
+      type: PerPage,
       defaultValue: 20
     },
     where: {

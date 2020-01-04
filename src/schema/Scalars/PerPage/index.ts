@@ -5,8 +5,8 @@ import { dedent } from "../../../lib/dedent";
 const MINIMUM = 1;
 const MAXIMUM = 50;
 
-export const PerPageInt = new GraphQLScalarType({
-  name: "PerPageInt",
+export const PerPage = new GraphQLScalarType({
+  name: "PerPage",
   description: dedent`
     | ${MINIMUM} 이상 ${MAXIMUM} 이하의 숫자 형식입니다.  
   `,

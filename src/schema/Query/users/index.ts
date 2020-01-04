@@ -3,7 +3,7 @@ import { getConnection } from "typeorm";
 
 import { UserRepository } from "../../../repositories/User";
 import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
-import { PageInt, PerPageInt } from "../../Scalars";
+import { Page, PerPage } from "../../Scalars";
 import { User } from "../../User";
 import { UsersWhereInput } from "./UsersWhereInput";
 
@@ -17,11 +17,11 @@ export const users = createField<any, Args>({
   type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(User))),
   args: {
     page: {
-      type: PageInt,
+      type: Page,
       defaultValue: 0
     },
     perPage: {
-      type: PerPageInt,
+      type: PerPage,
       defaultValue: 20
     },
     where: {

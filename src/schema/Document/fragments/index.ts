@@ -5,7 +5,7 @@ import { DocumentRepository } from "../../../repositories/Document";
 import { DocumentFragmentRepository } from "../../../repositories/DocumentFragment";
 import { createBracket, createField, load } from "../../../utils/graphql-helper";
 import { DocumentFragment } from "../../DocumentFragment";
-import { PageInt, PerPageInt } from "../../Scalars";
+import { Page, PerPage } from "../../Scalars";
 import { DocumentFragmentsOnDocumentWhereInput } from "./DocumentFragmentsOnDocumentWhereInput";
 
 type Args = {
@@ -18,11 +18,11 @@ export const fragments = createField<DocumentRepository, Args>({
   type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(DocumentFragment))),
   args: {
     page: {
-      type: PageInt,
+      type: Page,
       defaultValue: 0
     },
     perPage: {
-      type: PerPageInt,
+      type: PerPage,
       defaultValue: 20
     },
     where: {

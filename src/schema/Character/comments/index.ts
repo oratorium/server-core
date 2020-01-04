@@ -4,7 +4,7 @@ import { getConnection } from "typeorm";
 import { CharacterRepository } from "../../../repositories/Character";
 import { CommentRepository } from "../../../repositories/Comment";
 import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
-import { PageInt, PerPageInt } from "../../Scalars";
+import { Page, PerPage } from "../../Scalars";
 import { CommentsOnCharacterWhereInput } from "./CommentsOnCharacterWhereInput";
 
 type Args = {
@@ -18,11 +18,11 @@ export const comments = (Comment: GraphQLObjectType) =>
     type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Comment))),
     args: {
       page: {
-        type: PageInt,
+        type: Page,
         defaultValue: 0
       },
       perPage: {
-        type: PerPageInt,
+        type: PerPage,
         defaultValue: 20
       },
       where: {

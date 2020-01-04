@@ -6,7 +6,7 @@ import { CommentHashtagRepository } from "../../../repositories/CommentHashtag";
 import { HashtagRepository } from "../../../repositories/Hashtag";
 import { createField, loadMany } from "../../../utils/graphql-helper";
 import { Hashtag } from "../../Hashtag";
-import { PageInt, PerPageInt } from "../../Scalars";
+import { Page, PerPage } from "../../Scalars";
 
 type Args = {
   page: number;
@@ -17,11 +17,11 @@ export const hashtags = createField<CommentRepository, Args>({
   type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Hashtag))),
   args: {
     page: {
-      type: PageInt,
+      type: Page,
       defaultValue: 0
     },
     perPage: {
-      type: PerPageInt,
+      type: PerPage,
       defaultValue: 20
     }
   },

@@ -4,7 +4,7 @@ import { getConnection } from "typeorm";
 import { CharacterRepository } from "../../../repositories/Character";
 import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
 import { Character } from "../../Character";
-import { PageInt, PerPageInt } from "../../Scalars";
+import { Page, PerPage } from "../../Scalars";
 import { CharactersWhereInput } from "./CharactersWhereInput";
 
 type Args = {
@@ -17,11 +17,11 @@ export const characters = createField<any, Args>({
   type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Character))),
   args: {
     page: {
-      type: PageInt,
+      type: Page,
       defaultValue: 0
     },
     perPage: {
-      type: PerPageInt,
+      type: PerPage,
       defaultValue: 20
     },
     where: {

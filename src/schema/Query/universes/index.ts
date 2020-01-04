@@ -3,7 +3,7 @@ import { getConnection } from "typeorm";
 
 import { UniverseRepository } from "../../../repositories/Universe";
 import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
-import { PageInt, PerPageInt } from "../../Scalars";
+import { Page, PerPage } from "../../Scalars";
 import { Universe } from "../../Universe";
 import { UniversesWhereInput } from "./UniversesWhereInput";
 
@@ -17,11 +17,11 @@ export const universes = createField<any, Args>({
   type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Universe))),
   args: {
     page: {
-      type: PageInt,
+      type: Page,
       defaultValue: 0
     },
     perPage: {
-      type: PerPageInt,
+      type: PerPage,
       defaultValue: 20
     },
     where: {

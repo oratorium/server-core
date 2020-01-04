@@ -1,3 +1,3 @@
 export { DateTime } from "./DateTime";
-export { PageInt } from "./PageInt";
-export { PerPageInt } from "./PerPageInt";
+export { Page } from "./Page";
+export { PerPage } from "./PerPage";

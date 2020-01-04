@@ -5,7 +5,7 @@ import { CharacterRepository } from "../../../repositories/Character";
 import { CharacterInformationRepository } from "../../../repositories/CharacterInformation";
 import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
 import { CharacterInformation } from "../../CharacterInformation";
-import { PageInt, PerPageInt } from "../../Scalars";
+import { Page, PerPage } from "../../Scalars";
 import { InformationsOnCharacterWhereInput } from "./InformationsOnCharacterWhereInput";
 
 type Args = {
@@ -18,11 +18,11 @@ export const informations = createField<CharacterRepository, Args>({
   type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(CharacterInformation))),
   args: {
     page: {
-      type: PageInt,
+      type: Page,
       defaultValue: 0
     },
     perPage: {
-      type: PerPageInt,
+      type: PerPage,
       defaultValue: 20
     },
     where: {

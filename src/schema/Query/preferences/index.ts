@@ -4,7 +4,7 @@ import { getConnection } from "typeorm";
 import { PreferenceRepository } from "../../../repositories/Preference";
 import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
 import { Preference } from "../../Preference";
-import { PageInt, PerPageInt } from "../../Scalars";
+import { Page, PerPage } from "../../Scalars";
 import { PreferencesWhereInput } from "./PreferencesWhereInput";
 
 type Args = {
@@ -17,11 +17,11 @@ export const preferences = createField<any, Args>({
   type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Preference))),
   args: {
     page: {
-      type: PageInt,
+      type: Page,
       defaultValue: 0
     },
     perPage: {
-      type: PerPageInt,
+      type: PerPage,
       defaultValue: 20
     },
     where: {

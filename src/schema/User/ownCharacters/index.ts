@@ -4,7 +4,7 @@ import { getConnection } from "typeorm";
 import { CharacterRepository } from "../../../repositories/Character";
 import { UserRepository } from "../../../repositories/User";
 import { createBracket, createField, load } from "../../../utils/graphql-helper";
-import { PageInt, PerPageInt } from "../../Scalars";
+import { Page, PerPage } from "../../Scalars";
 import { ownCharactersOnUserWhereInput } from "./ownCharactersOnUserWhereInput";
 
 type Args = {
@@ -18,11 +18,11 @@ export const ownCharacters = (Character: GraphQLObjectType) =>
     type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Character))),
     args: {
       page: {
-        type: PageInt,
+        type: Page,
         defaultValue: 0
       },
       perPage: {
-        type: PerPageInt,
+        type: PerPage,
         defaultValue: 20
       },
       where: {

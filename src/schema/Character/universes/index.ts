@@ -5,7 +5,7 @@ import { CharacterRepository } from "../../../repositories/Character";
 import { CharacterUniverseRepository } from "../../../repositories/CharacterUniverse";
 import { UniverseRepository } from "../../../repositories/Universe";
 import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
-import { PageInt, PerPageInt } from "../../Scalars";
+import { Page, PerPage } from "../../Scalars";
 import { Universe } from "../../Universe";
 import { UniversesOnCharacterWhereInput } from "./UniversesOnCharacterWhereInput";
 
@@ -19,11 +19,11 @@ export const universes = createField<CharacterRepository, Args>({
   type: new GraphQLNonNull(new GraphQLList(new GraphQLNonNull(Universe))),
   args: {
     page: {
-      type: PageInt,
+      type: Page,
       defaultValue: 0
     },
     perPage: {
-      type: PerPageInt,
+      type: PerPage,
       defaultValue: 20
     },
     where: {
