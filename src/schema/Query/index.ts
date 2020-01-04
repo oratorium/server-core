@@ -1,6 +1,8 @@
 import { GraphQLObjectType } from "graphql";
 
 import { createFieldMap } from "../../utils/graphql-helper";
+import { character } from "./character";
+import { characters } from "./characters";
 import { comment } from "./comment";
 import { comments } from "./comments";
 import { document } from "./document";
@@ -14,5 +16,18 @@ import { users } from "./users";
 
 export const Query = new GraphQLObjectType({
   name: "Query",
-  fields: createFieldMap({ comment, comments, document, documents, preference, preferences, universe, universes, user, users })
+  fields: createFieldMap({
+    character,
+    characters,
+    comment,
+    comments,
+    document,
+    documents,
+    preference,
+    preferences,
+    universe,
+    universes,
+    user,
+    users
+  })
 });

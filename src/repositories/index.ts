@@ -2,6 +2,9 @@ import { createConnection } from "typeorm";
 
 import { configs } from "../configs";
 import { AttachmentRepository } from "./Attachment";
+import { CharacterRepository } from "./Character";
+import { CharacterInformationRepository } from "./CharacterInformation";
+import { CharacterUniverseRepository } from "./CharacterUniverse";
 import { CommentRepository } from "./Comment";
 import { CommentHashtagRepository } from "./CommentHashtag";
 import { DocumentRepository } from "./Document";
@@ -25,6 +28,9 @@ const createDatabaseIfNotExists = async () => {
 const synchorinzeRepositories = async () => {
   const entities = [
     AttachmentRepository,
+    CharacterRepository,
+    CharacterInformationRepository,
+    CharacterUniverseRepository,
     CommentRepository,
     CommentHashtagRepository,
     DocumentRepository,

@@ -5,9 +5,6 @@ export const UsersWhereInput = createWhereInput("Users", {
   id: {
     type: IdOperator
   },
-  email: {
-    type: StringOperator
-  },
   displayName: {
     type: StringOperator
   },

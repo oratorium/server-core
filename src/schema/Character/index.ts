@@ -1,15 +1,22 @@
 import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "graphql";
 
 import { createFieldMap } from "../../utils/graphql-helper";
-import { Character } from "../Character";
 import { DateTime } from "../Scalars";
-import { ownCharacter } from "./ownCharacter";
-import { ownCharacters } from "./ownCharacters";
+import { User } from "../User";
+import { informations } from "./informations";
+import { owner } from "./owner";
+import { universes } from "./universes";
 
-export const User = new GraphQLObjectType({
-  name: "User",
+export const Character = new GraphQLObjectType({
+  name: "Character",
   fields: createFieldMap(() => ({
     id: {
+      type: GraphQLNonNull(GraphQLID)
+    },
+    userId: {
+      type: GraphQLNonNull(GraphQLID)
+    },
+    characterId: {
       type: GraphQLNonNull(GraphQLID)
     },
     displayName: {
@@ -18,7 +25,8 @@ export const User = new GraphQLObjectType({
     createdAt: {
       type: GraphQLNonNull(DateTime)
     },
-    ownCharacter: ownCharacter(Character),
-    ownCharacters: ownCharacters(Character)
+    informations,
+    owner: owner(User),
+    universes
   }))
 });
