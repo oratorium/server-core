@@ -3,8 +3,10 @@ import { createConnection } from "typeorm";
 import { configs } from "../configs";
 import { AttachmentRepository } from "./Attachment";
 import { CommentRepository } from "./Comment";
+import { CommentHashtagRepository } from "./CommentHashtag";
 import { DocumentRepository } from "./Document";
 import { DocumentFragmentRepository } from "./DocumentFragment";
+import { HashtagRepository } from "./Hashtag";
 import { KindRepository } from "./Kind";
 import { PreferenceRepository } from "./Preference";
 import { UserRepository } from "./User";
@@ -23,8 +25,10 @@ const synchorinzeRepositories = async () => {
   const entities = [
     AttachmentRepository,
     CommentRepository,
+    CommentHashtagRepository,
     DocumentRepository,
     DocumentFragmentRepository,
+    HashtagRepository,
     KindRepository,
     PreferenceRepository,
     UserRepository
