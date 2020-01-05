@@ -3,7 +3,7 @@ import { getConnection } from "typeorm";
 
 import { CharacterRepository } from "../../../repositories/Character";
 import { UserRepository } from "../../../repositories/User";
-import { createBracket, createField, load } from "../../../utils/graphql-helper";
+import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
 import { Page, PerPage } from "../../Scalars";
 import { ownCharactersOnUserWhereInput } from "./ownCharactersOnUserWhereInput";
 
@@ -41,6 +41,6 @@ export const ownCharacters = (Character: GraphQLObjectType) =>
         queryBuilder.andWhere(createBracket(args.where));
       }
       const [query, parameterList] = queryBuilder.getQueryAndParameters();
-      return load<CharacterRepository>(query, parameterList);
+      return loadMany<CharacterRepository>(query, parameterList);
     }
   });
