@@ -2,13 +2,15 @@
   "name": "server-core",
   "version": "0.1.0",
   "scripts": {
-    "prelocal": "printf \"\\ec\" & cross-env NODE_ENV=development yarn build",
+    "build": "babel --extensions \".ts\" src -d dist",
+    "build:production": "cross-env NODE_ENV=production BABEL_ENV=production yarn build",
     "local": "node dist/index.local",
     "local:test": "jest --watchAll",
-    "test": "jest",
     "prebuild": "printf \"\\ec\"",
-    "build": "babel --extensions \".ts\" src -d dist",
-    "build:production": "cross-env NODE_ENV=production BABEL_ENV=production yarn build"
+    "prelocal": "printf \"\\ec\" & cross-env NODE_ENV=development yarn build",
+    "presetup": "cross-env NODE_ENV=development yarn build",
+    "setup": "cross-env NODE_ENV=development node scripts/setup",
+    "test": "jest"
   },
   "license": "MIT",
   "dependencies": {
