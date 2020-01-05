@@ -15,6 +15,7 @@ import { PreferenceRepository } from "./Preference";
 import { TokenRepository } from "./Token";
 import { UniverseRepository } from "./Universe";
 import { UserRepository } from "./User";
+import { UserAccountRepository } from "./UserAccount";
 
 const createDatabaseIfNotExists = async () => {
   const connectionOptions = { ...configs.databaseConnectionOptions, database: "" };
@@ -41,7 +42,8 @@ const synchorinzeRepositories = async () => {
     PreferenceRepository,
     TokenRepository,
     UniverseRepository,
-    UserRepository
+    UserRepository,
+    UserAccountRepository
   ];
   const connectionOption = { ...configs.databaseConnectionOptions, entities };
   const connection = await createConnection(connectionOption);

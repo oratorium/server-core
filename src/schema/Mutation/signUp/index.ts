@@ -1,8 +1,12 @@
+import Time from "dayjs";
 import { GraphQLBoolean, GraphQLNonNull, GraphQLString } from "graphql";
-import { getRepository } from "typeorm";
+import { getConnection } from "typeorm";
 
+import { TokenRepository } from "../../../repositories/Token";
 import { UserRepository } from "../../../repositories/User";
+import { UserAccountRepository } from "../../../repositories/UserAccount";
 import { createField } from "../../../utils/graphql-helper";
+import { throws } from "../../../utils/throws";
 import { MentionID } from "../../Scalars";
 
 type Args = {
@@ -30,15 +34,26 @@ export const signUp = createField<any, Args>({
   },
   async resolve(parent, args, context, info) {
     const { email, password, mentionId, displayName } = args;
-    const alreadyExistsUser = await getRepository(UserRepository).findOne({ where: [{ email }, { mentionId }, { displayName }] });
-    if (alreadyExistsUser) {
-      throw new Error("이미 존재하는 이메일 혹은 닉네임 혹은 멘션 아이디입니다");
-    }
-    await getRepository(UserRepository).insert({
-      email,
-      password,
-      mentionId,
-      displayName
+    await getConnection().transaction(async EntityManager => {
+      const user = await EntityManager.getRepository(UserRepository)
+        .insert({ mentionId, displayName })
+        .catch(() => throws(new Error("이미 존재하는 멘션 아이디입니다.")));
+      const salt = UserAccountRepository.createSalt();
+      const userAccountRepository = await EntityManager.getRepository(UserAccountRepository)
+        .insert({
+          userId: user.generatedMaps[0].id,
+          email,
+          salt,
+          password: await UserAccountRepository.hashPassword(password, salt)
+        })
+        .catch(() => throws(new Error("이미 존재하는 이메일입니다.")));
+      const token = await EntityManager.getRepository(TokenRepository).insert({
+        type: "User::Authorization",
+        value: userAccountRepository.generatedMaps[0].id,
+        expiresAt: Time()
+          .add(7, "day")
+          .toDate()
+      });
     });
   }
 });

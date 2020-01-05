@@ -16,4 +16,7 @@ export class TokenRepository {
 
   @Column({ type: "datetime", default: () => "CURRENT_TIMESTAMP" })
   createdAt!: Date;
+
+  @Column({ type: "datetime" })
+  expiresAt!: Date;
 }

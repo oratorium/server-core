@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, Unique } from "typeorm";
 
 type Payload = {
   user: {
@@ -6,16 +6,11 @@ type Payload = {
   };
 };
 
+@Unique(["mentionId"])
 @Entity({ name: "User" })
 export class UserRepository {
   @PrimaryGeneratedColumn({ type: "bigint", unsigned: true })
   id!: number;
-
-  @Column({ type: "varchar", length: 64 })
-  email!: string;
-
-  @Column({ type: "varchar", length: 64 })
-  password!: string;
 
   @Column({ type: "varchar", length: 64 })
   mentionId!: string;
@@ -23,7 +18,7 @@ export class UserRepository {
   @Column({ type: "varchar", length: 64 })
   displayName!: string;
 
-  @Column({ type: "bool", default: false })
+  @Column({ type: "boolean", default: false })
   isAuthorized!: boolean;
 
   @Column({ type: "datetime", default: () => "CURRENT_TIMESTAMP" })
