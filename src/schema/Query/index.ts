@@ -5,6 +5,8 @@ import { character } from "./character";
 import { characters } from "./characters";
 import { comment } from "./comment";
 import { comments } from "./comments";
+import { community } from "./community";
+import { communities } from "./communities";
 import { document } from "./document";
 import { documents } from "./documents";
 import { preference } from "./preference";
@@ -21,6 +23,8 @@ export const Query = new GraphQLObjectType({
     characters,
     comment,
     comments,
+    community,
+    communities,
     document,
     documents,
     preference,

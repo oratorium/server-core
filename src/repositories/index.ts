@@ -7,6 +7,7 @@ import { CharacterInformationRepository } from "./CharacterInformation";
 import { CharacterUniverseRepository } from "./CharacterUniverse";
 import { CommentRepository } from "./Comment";
 import { CommentHashtagRepository } from "./CommentHashtag";
+import { CommunityRepository } from "./Community";
 import { DocumentRepository } from "./Document";
 import { DocumentFragmentRepository } from "./DocumentFragment";
 import { HashtagRepository } from "./Hashtag";
@@ -36,6 +37,7 @@ const synchorinzeRepositories = async () => {
     CharacterUniverseRepository,
     CommentRepository,
     CommentHashtagRepository,
+    CommunityRepository,
     DocumentRepository,
     DocumentFragmentRepository,
     HashtagRepository,
