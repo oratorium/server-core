@@ -18,6 +18,9 @@ export class UserRepository {
   @Column({ type: "varchar", length: 64 })
   displayName!: string;
 
+  @Column({ type: "varchar", length: 64 })
+  avatarImage!: string;
+
   @Column({ type: "boolean", default: false })
   isAuthorized!: boolean;
 

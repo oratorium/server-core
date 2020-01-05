@@ -6,7 +6,6 @@ module.exports.authorizeUser = afterUpdate(
   "UserAccount",
   dedent`
     | UPDATE \`User\` \`U\`
-    |
     | INNER JOIN (
     |   SELECT
     |     SUM(\`UA\`.\`isAuthorized\`) != 0 AS \`isAuthorized\`
@@ -14,9 +13,7 @@ module.exports.authorizeUser = afterUpdate(
     |   WHERE \`UA\`.\`userId\` = \`NEW\`.\`userId\`
     |   LIMIT 1
     | ) \`UAS\`
-    |
     | SET \`U\`.\`isAuthorized\` = \`UAS\`.\`isAuthorized\`
-    |
     | WHERE \`U\`.\`id\` = \`NEW\`.\`userId\`;
   `
 );

@@ -3,6 +3,8 @@ import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "gra
 import { createFieldMap } from "../../utils/graphql-helper";
 import { Character } from "../Character";
 import { DateTime } from "../Scalars";
+import { avatar } from "./avatar";
+import { avatars } from "./avatars";
 import { ownCharacter } from "./ownCharacter";
 import { ownCharacters } from "./ownCharacters";
 
@@ -21,6 +23,8 @@ export const User = new GraphQLObjectType({
     createdAt: {
       type: GraphQLNonNull(DateTime)
     },
+    avatar,
+    avatars,
     ownCharacter: ownCharacter(Character),
     ownCharacters: ownCharacters(Character)
   }))
