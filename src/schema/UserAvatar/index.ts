@@ -13,7 +13,7 @@ export const UserAvatar = new GraphQLObjectType({
     userId: {
       type: GraphQLNonNull(GraphQLID)
     },
-    isCurrent: {
+    isDefault: {
       type: GraphQLNonNull(GraphQLBoolean)
     },
     extension: {

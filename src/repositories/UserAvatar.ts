@@ -10,7 +10,7 @@ export class UserAvatarRepository {
   userId!: number;
 
   @Column({ type: "boolean", default: false })
-  isCurrent!: string;
+  isDefault!: string;
 
   @Column({ type: "varchar", length: 64 })
   extension!: string;

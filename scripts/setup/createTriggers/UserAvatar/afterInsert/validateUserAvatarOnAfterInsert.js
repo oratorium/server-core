@@ -6,7 +6,7 @@ module.exports.validateUserAvatarOnAfterInsert = afterInsert(
   "UserAvatar",
   dedent`
     | IF (
-    |   SELECT SUM(\`UA\`.\`isCurrent\`)
+    |   SELECT SUM(\`UA\`.\`isDefault\`)
     |   FROM \`UserAvatar\` \`UA\`
     |   WHERE \`UA\`.\`userId\` = \`NEW\`.\`userId\`
     | ) > 1
