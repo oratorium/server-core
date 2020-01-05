@@ -12,6 +12,9 @@ export const User = new GraphQLObjectType({
     id: {
       type: GraphQLNonNull(GraphQLID)
     },
+    mentionId: {
+      type: GraphQLNonNull(GraphQLString)
+    },
     displayName: {
       type: GraphQLNonNull(GraphQLString)
     },
