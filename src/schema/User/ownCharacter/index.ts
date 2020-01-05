@@ -7,8 +7,6 @@ import { createBracket, createField, load } from "../../../utils/graphql-helper"
 import { OwnCharacterOnUserWhereInput } from "./OwnCharactersOnUserWhereInputs";
 
 type Args = {
-  page: number;
-  perPage: number;
   where: any;
 };
 

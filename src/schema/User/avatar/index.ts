@@ -7,8 +7,6 @@ import { UserAvatar } from "../../UserAvatar";
 import { AvatarOnUserWhereInput } from "./AvatarOnUserWhereInput";
 
 type Args = {
-  page: number;
-  perPage: number;
   where: any;
 };
 
