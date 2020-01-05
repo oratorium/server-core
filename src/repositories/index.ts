@@ -8,6 +8,7 @@ import { CharacterUniverseRepository } from "./CharacterUniverse";
 import { CommentRepository } from "./Comment";
 import { CommentHashtagRepository } from "./CommentHashtag";
 import { CommunityRepository } from "./Community";
+import { CommunityCharacterRepository } from "./CommunityCharacter";
 import { DocumentRepository } from "./Document";
 import { DocumentFragmentRepository } from "./DocumentFragment";
 import { HashtagRepository } from "./Hashtag";
@@ -18,6 +19,7 @@ import { UniverseRepository } from "./Universe";
 import { UserRepository } from "./User";
 import { UserAccountRepository } from "./UserAccount";
 import { UserAvatarRepository } from "./UserAvatar";
+import { UserCommunityRepository } from "./UserCommunity";
 
 const createDatabaseIfNotExists = async () => {
   const connectionOptions = { ...configs.databaseConnectionOptions, database: "" };
@@ -37,6 +39,7 @@ const synchorinzeRepositories = async () => {
     CharacterUniverseRepository,
     CommentRepository,
     CommentHashtagRepository,
+    CommunityCharacterRepository,
     CommunityRepository,
     DocumentRepository,
     DocumentFragmentRepository,
@@ -45,6 +48,7 @@ const synchorinzeRepositories = async () => {
     PreferenceRepository,
     TokenRepository,
     UniverseRepository,
+    UserCommunityRepository,
     UserRepository,
     UserAccountRepository,
     UserAvatarRepository

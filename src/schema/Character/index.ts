@@ -18,9 +18,6 @@ export const Character = new GraphQLObjectType({
     userId: {
       type: GraphQLNonNull(GraphQLID)
     },
-    characterId: {
-      type: GraphQLNonNull(GraphQLID)
-    },
     displayName: {
       type: GraphQLNonNull(GraphQLString)
     },

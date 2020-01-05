@@ -2,9 +2,12 @@ import { GraphQLID, GraphQLNonNull, GraphQLObjectType, GraphQLString } from "gra
 
 import { createFieldMap } from "../../utils/graphql-helper";
 import { Character } from "../Character";
+import { Community } from "../Community";
 import { DateTime } from "../Scalars";
 import { avatar } from "./avatar";
 import { avatars } from "./avatars";
+import { communities } from "./communities";
+import { community } from "./community";
 import { ownCharacter } from "./ownCharacter";
 import { ownCharacters } from "./ownCharacters";
 
@@ -25,6 +28,8 @@ export const User = new GraphQLObjectType({
     },
     avatar,
     avatars,
+    community: community(Community),
+    communities: communities(Community),
     ownCharacter: ownCharacter(Character),
     ownCharacters: ownCharacters(Character)
   }))
