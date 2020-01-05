@@ -5,7 +5,7 @@ import { CharacterRepository } from "../../../repositories/Character";
 import { UserRepository } from "../../../repositories/User";
 import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
 import { Page, PerPage } from "../../Scalars";
-import { ownCharactersOnUserWhereInput } from "./ownCharactersOnUserWhereInput";
+import { ownCharactersOnUserWhereInput } from "./OwnCharactersOnUserWhereInputs";
 
 type Args = {
   page: number;

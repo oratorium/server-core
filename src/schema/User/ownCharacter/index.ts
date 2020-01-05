@@ -4,7 +4,7 @@ import { getConnection } from "typeorm";
 import { CharacterRepository } from "../../../repositories/Character";
 import { UserRepository } from "../../../repositories/User";
 import { createBracket, createField, load } from "../../../utils/graphql-helper";
-import { ownCharacterOnUserWhereInput } from "./ownCharactersOnUserWhereInput";
+import { ownCharacterOnUserWhereInput } from "./OwnCharactersOnUserWhereInputs";
 
 type Args = {
   page: number;
