@@ -4,7 +4,7 @@ import { getConnection } from "typeorm";
 import { CharacterRepository } from "../../../repositories/Character";
 import { UserRepository } from "../../../repositories/User";
 import { createBracket, createField, load } from "../../../utils/graphql-helper";
-import { ownCharacterOnUserWhereInput } from "./OwnCharactersOnUserWhereInputs";
+import { OwnCharacterOnUserWhereInput } from "./OwnCharactersOnUserWhereInputs";
 
 type Args = {
   page: number;
@@ -17,7 +17,7 @@ export const ownCharacter = (Character: GraphQLObjectType) =>
     type: Character,
     args: {
       where: {
-        type: ownCharacterOnUserWhereInput
+        type: OwnCharacterOnUserWhereInput
       }
     },
     resolve(parent, args, context, info) {

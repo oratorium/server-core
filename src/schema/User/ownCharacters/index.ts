@@ -5,7 +5,7 @@ import { CharacterRepository } from "../../../repositories/Character";
 import { UserRepository } from "../../../repositories/User";
 import { createBracket, createField, loadMany } from "../../../utils/graphql-helper";
 import { Page, PerPage } from "../../Scalars";
-import { ownCharactersOnUserWhereInput } from "./OwnCharactersOnUserWhereInputs";
+import { OwnCharactersOnUserWhereInput } from "./OwnCharactersOnUserWhereInput";
 
 type Args = {
   page: number;
@@ -26,7 +26,7 @@ export const ownCharacters = (Character: GraphQLObjectType) =>
         defaultValue: 20
       },
       where: {
-        type: ownCharactersOnUserWhereInput
+        type: OwnCharactersOnUserWhereInput
       }
     },
     resolve(parent, args, context, info) {
