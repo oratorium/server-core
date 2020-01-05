@@ -1,5 +1,5 @@
-const { afterUpdate } = require("../utils/trigger");
-const { dedent } = require("../utils/dedent");
+const { afterUpdate } = require("../../../utils/trigger");
+const { dedent } = require("../../../utils/dedent");
 
 module.exports.authorizeUser = afterUpdate(
   "authorizeUser",

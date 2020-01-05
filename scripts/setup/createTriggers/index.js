@@ -1,6 +1,5 @@
-const { authorizeUser } = require("./authorizeUser");
-const { validateUserAvatar } = require("./validateUserAvatar");
+const { User } = require("./User");
+const { UserAccount } = require("./UserAccount");
+const { UserAvatar } = require("./UserAvatar");
 
-module.exports.createTriggers = async () => {
-  await Promise.all([authorizeUser(), validateUserAvatar()]);
-};
+module.exports.createTriggers = () => Promise.all([User(), UserAccount(), UserAvatar()]);
